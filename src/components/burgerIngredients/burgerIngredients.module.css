@@ -1,0 +1,134 @@
+.burgerIngredients {
+    grid-area: n;
+    display: grid;
+
+    grid-template-columns: 600px;
+    height: 912px;
+
+    justify-content: end;
+
+
+}
+
+.miniMenu {
+
+    display: flex;
+    justify-content: space-evenly;
+
+    margin-top: 40px;
+    margin-bottom: 20px;
+
+    /* desktop/text */
+
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+
+
+}
+
+.header {
+    display: flex;
+
+    font-size: 36px;
+
+
+    width: 600px;
+    height: 40px;
+
+    margin-top: 40px;
+
+
+    /* Соберите бургер */
+
+
+
+    /* desktop/display large */
+
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 40px;
+    /* identical to box height, or 111% */
+
+
+
+    /* text/primary-light (standart text) */
+
+    color: #F2F2F3;
+
+
+}
+
+.blockComponent {
+
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+
+}
+
+.textChoice {
+    /* desktop/display small */
+
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 30px;
+
+}
+
+/* полоса прокрутки (скроллбар) */
+::-webkit-scrollbar {
+    width: 8px; /* ширина для вертикального скролла */
+    height: 8px; /* высота для горизонтального скролла */
+    background-color: #143861;
+}
+
+/* ползунок скроллбара */
+::-webkit-scrollbar-thumb {
+    background-color: #843465;
+    /*border-radius: 9em;*/
+    box-shadow: inset 1px 1px 10px #f3faf7;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #253861;
+}
+
+
+/*!* Стрелки *!*/
+
+/*::-webkit-scrollbar-button:vertical:start:decrement {*/
+/*    background: linear-gradient(120deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),*/
+/*    linear-gradient(240deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),*/
+/*    linear-gradient(0deg, #02141a 30%, rgba(0, 0, 0, 0) 31%);*/
+/*    background-color: #f6f8f4;*/
+/*}*/
+
+/*::-webkit-scrollbar-button:vertical:end:increment {*/
+/*    background: linear-gradient(300deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),*/
+/*    linear-gradient(60deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),*/
+/*    linear-gradient(180deg, #02141a 30%, rgba(0, 0, 0, 0) 31%);*/
+/*    background-color: #f6f8f4;*/
+/*}*/
+
+/*::-webkit-scrollbar-button:horizontal:start:decrement {*/
+/*    background: linear-gradient(30deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),*/
+/*    linear-gradient(150deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),*/
+/*    linear-gradient(270deg, #02141a 30%, rgba(0, 0, 0, 0) 31%);*/
+/*    background-color: #f6f8f4;*/
+/*}*/
+
+/*::-webkit-scrollbar-button:horizontal:end:increment {*/
+/*    background: linear-gradient(210deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),*/
+/*    linear-gradient(330deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),*/
+/*    linear-gradient(90deg, #02141a 30%, rgba(0, 0, 0, 0) 31%);*/
+/*    background-color: #f6f8f4;*/
+/*}*/
