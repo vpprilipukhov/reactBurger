@@ -292,11 +292,7 @@
     /* Text */
 
 
-    position: static;
-    width: 135px;
-    height: 24px;
-    left: 40px;
-    top: 20px;
+
 
     /* desktop/text */
 
@@ -308,7 +304,7 @@
     /* identical to box height, or 150% */
 
     display: flex;
-    align-items: center;
+    align-items: start;
     text-align: center;
 
     /* text/primary-light (standart text) */
@@ -318,9 +314,6 @@
 
     /* Inside auto layout */
 
-    flex: none;
-    order: 0;
-    flex-grow: 0;
 }
 
 .but { /* Base */
@@ -332,14 +325,13 @@
     flex-direction: row;
     justify-content: flex-end;
 
+    height: 64px;
+    width: 215px;
 
-    padding: 20px 20px;
+    padding: 18px 48px;
 
-    position: static;
-    left: 0%;
-    right: 0%;
-    top: 0%;
-    bottom: 0%;
+
+
 
     /* button/normal */
 
@@ -348,10 +340,7 @@
 
     /* Inside auto layout */
 
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-    margin: 0px 0px;
+
 }
 
 

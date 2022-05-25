@@ -7,7 +7,7 @@ import {State} from "../../tools/types";
 
 interface Props {
     props?: React.ReactNode
-    state: any
+    state: State[]
     getIdIngredients: Function
 
 

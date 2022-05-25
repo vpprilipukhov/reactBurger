@@ -8,6 +8,7 @@ import {State, PromiseMy} from "../../tools/types";
 import ReactDOM from 'react-dom';
 import Modal from "../modal/modal";
 import IngredientDetails from "../modal/modalComponents/ingredientDetails/ingredientDetails";
+import ModalApp from "../modal/modalApp";
 
 interface ErrorTS {
     data: string
@@ -145,27 +146,15 @@ const App: FC = () => {
         }, [stateChoice]
     )
 
-    const setActiveModalFUNC = (fl: boolean) => {
-        setActiveModal(fl)
-    }
+    // const setActiveModalFUNC = (fl: boolean) => {
+    //     setActiveModal(fl)
+    // }
 
 
     return (
         <div className={styles.page}>
-            <main>
-
-
-                {activeModal &&
-                    ReactDOM.createPortal(
-                        <div>
-                            <ModalOverlay activeFunc={setActiveModal}/>
-                            <Modal activeFunc={setActiveModal}><IngredientDetails ing={ing}/></Modal>
-                        </div>,
-                        document.getElementById('portal') as HTMLElement
-                    )}
-
-
-            </main>
+            <ModalApp activeModalName={activeModalName} activeModal={activeModal} setActiveModal={setActiveModal}
+                      ing={ing}/>
 
             <div className={styles.app_wrapper}>
 

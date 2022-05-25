@@ -28,7 +28,7 @@ interface State {
 
 interface Props {
     props?: React.ReactNode
-    stateChoice: any
+    stateChoice: State[]
     dell: Function
     coast: number
     getIdOrder: Function

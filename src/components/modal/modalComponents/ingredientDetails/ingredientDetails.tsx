@@ -1,25 +1,10 @@
 import React from "react";
 import styles from './ingredientDetails.module.css'
+import {State} from "../../../../tools/types";
 
-interface State {
-    _id: string
-    name: string
-    type: string
-    proteins: number
-    fat: number
-    carbohydrates: number
-    calories: number
-    price: number
-    image: string
-    image_mobile: string
-    image_large: string
-    __v: number
-
-
-}
 
 interface Props {
-    ing: State | undefined
+    ing?: State | undefined
 }
 
 const IngredientDetails: React.FC<Props> = ({

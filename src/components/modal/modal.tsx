@@ -8,10 +8,11 @@ import {
 interface Props {
     children?: React.ReactNode
     activeFunc: Function
+    title: string
 }
 
 const Modal: React.FC<Props> = ({
-
+                                    title,
                                     activeFunc,
                                     children
 
@@ -31,7 +32,7 @@ const Modal: React.FC<Props> = ({
                 <header className={styles.headerMy}>
                     <div className={styles.headerMyText}>
                         {
-                            'Заголовок'
+                            title
                         }</div>
                     <button className={styles.headerMyCloseIcon}
                             onClick={off}>< CloseIcon type={'primary'}/></button>
