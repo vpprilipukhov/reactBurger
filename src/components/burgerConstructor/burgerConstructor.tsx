@@ -54,7 +54,7 @@ const BurgerConstructor: React.FC<Props> = ({
     const choiceBunTop = stateChoice?.filter((el: State) => el.type === "bun").map((el: State, index: React.Key | null | undefined) => (
 
         <div key={index} className={styles.choiceComponent}>
-            <div className={styles.dragIcon}><DragIcon type={'primary'}/></div>
+            <div className={styles.dragIcon}/>
             <div className={styles.choiceComponentInnerTop}>
                 <div className={styles.choiceComponentImage}><img src={el.image} alt={''}
                                                                   className={styles.choiceComponentImageImage}/></div>
@@ -70,7 +70,7 @@ const BurgerConstructor: React.FC<Props> = ({
     const choiceBunBot = stateChoice?.filter((el: State) => el.type === "bun").map((el: State, index: React.Key | null | undefined) => (
 
         <div key={index} className={styles.choiceComponent}>
-            <div className={styles.dragIcon}><DragIcon type={'primary'}/></div>
+            <div className={styles.dragIcon}/>
             <div className={styles.choiceComponentInnerBot}>
                 <div className={styles.choiceComponentImage}><img src={el.image} alt={''}
                                                                   className={styles.choiceComponentImageImage}/></div>
@@ -107,7 +107,7 @@ const BurgerConstructor: React.FC<Props> = ({
     return (
         <div className={styles.burgerIngredients}>
             {choiceBunTop}
-            <div className={styles.choiceComponentFilling}>
+            <div className={`${styles.choiceComponentFilling} custom-scroll`}>
                 {choice}
             </div>
             {choiceBunBot}

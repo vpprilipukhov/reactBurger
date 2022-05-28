@@ -42,7 +42,7 @@ const BurgerIngredients: React.FC<Props> = ({
                 <div> Соусы</div>
                 <div> Начинки</div>
             </div>
-            <div className={styles.blockComponent}>
+            <div className={`${styles.blockComponent} custom-scroll`}>
                 <div>
                     <div className={styles.textChoice}>
                         Булки

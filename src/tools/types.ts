@@ -1,3 +1,7 @@
+export interface StateR {
+    activeModal: boolean
+}
+
 export interface State {
     _id: string
     name: string

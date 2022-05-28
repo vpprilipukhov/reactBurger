@@ -2,9 +2,9 @@ import React from 'react';
 import ModalOverlay from './modalOverlay/modalOverlay'
 import ReactDOM from 'react-dom';
 import Modal from "../modal/modal";
-import IngredientDetails from "../modal/modalComponents/ingredientDetails/ingredientDetails";
+import IngredientDetails from "../ingredientDetails/ingredientDetails";
 import {State} from "../../tools/types";
-import OrderDetails from "./modalComponents/orderDetails/orderDetails";
+import OrderDetails from "../orderDetails/orderDetails";
 
 interface Props {
     props?: React.ReactNode
