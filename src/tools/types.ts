@@ -1,3 +1,5 @@
+import {FETCH_TODOS, OFF_MODAL, ON_MODAL} from "../redux/reduxTools/types";
+
 export interface StateR {
     activeModal: boolean
 }
@@ -23,3 +25,23 @@ export interface PromiseMy {
     success: boolean
     data: any;
 }
+
+
+interface onModalAC{
+    type: typeof ON_MODAL
+    payload: any[]
+}
+
+interface offModal{
+    type: typeof OFF_MODAL
+    payload: any[]
+}
+
+
+export type TaskActionTypes = onModalAC | offModal
+
+interface actionModal{
+    type: typeof ON_MODAL | typeof OFF_MODAL | typeof FETCH_TODOS
+}
+
+export type actionTypes = actionModal

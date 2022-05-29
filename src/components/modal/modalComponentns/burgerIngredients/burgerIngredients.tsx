@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './burgerIngredients.module.css'
 import BurgerIngSub from "./burgerIngSub";
-import {State} from "../../tools/types";
+import {State} from "../../../../tools/types";
 
 
 

@@ -3,23 +3,27 @@ import styles from './modal.module.css'
 import {
     CloseIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components'
+import {useTypeSelector} from "../../hooks/useTypeSelector";
+import {useDispatch} from "react-redux";
+import {offModalAC} from "../../redux/reduxTools/actions";
 
 
 interface Props {
     children?: React.ReactNode
-    activeFunc: Function
     title: string
 }
 
 const Modal: React.FC<Props> = ({
                                     title,
-                                    activeFunc,
                                     children
 
                                 }) => {
 
+    const activeModalRedux = useTypeSelector(state => state.modalReducer.activeModal)
+    const dispatch = useDispatch()
+
     const off = () => {
-        activeFunc(false)
+        dispatch(offModalAC())
     }
 
 

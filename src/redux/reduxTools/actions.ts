@@ -1,14 +1,20 @@
 import {OFF_MODAL, ON_MODAL} from "./types";
+import {TaskActionTypes} from "../../tools/types";
 
-export function onModalAC() {
+
+export function onModalAC(): TaskActionTypes {
     return {
         type: ON_MODAL,
+        payload: []
     }
 }
 
-export function offModal() {
+export function offModalAC(): TaskActionTypes {
     return {
         type: OFF_MODAL,
+        payload: []
     }
 }
+
+
 

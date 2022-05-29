@@ -1,13 +1,15 @@
 import React, {FC} from 'react';
 import styles from './app.module.css'
 import AppHeader from "../appHeader/appHeader";
-import BurgerIngredients from "../burgerIngredients/burgerIngredients";
+import BurgerIngredients from "../modal/modalComponentns/burgerIngredients/burgerIngredients";
 import BurgerConstructor from "../burgerConstructor/burgerConstructor";
 import {State, PromiseMy} from "../../tools/types";
 import ModalApp from "../modal/modalApp";
 import {useDispatch} from "react-redux";
-import {Action, Dispatch} from "redux";
+
 import {onModalAC} from "../../redux/reduxTools/actions";
+import {useTypeSelector} from "../../hooks/useTypeSelector";
+import {fetchUsers} from "../../redux/test/user";
 
 interface ErrorTS {
     data: string
@@ -36,18 +38,24 @@ const App: FC = () => {
     const [activeModal, setActiveModal] = React.useState<boolean>(false)
     const [activeModalName, setActiveModalName] = React.useState<string>('')
     const [ing, setIng] = React.useState<State | undefined>(undefined)
-    const dispatch: Dispatch<Action> = useDispatch()
 
 
-
+    const activeModalRedux = useTypeSelector(state => state.modalReducer.activeModal)
+    const dispatch = useDispatch()
 
 
     React.useEffect(
+        // () => {
+        //     getState(url)
+        //         .then(data => setState(data.data))
+        //         .catch(e => setError(e.message))
+        //     error && console.log(error)
+        // },
         () => {
-            getState(url)
-                .then(data => setState(data.data))
-                .catch(e => setError(e.message))
-            error && console.log(error)
+
+            dispatch(fetchUsers())
+
+
         },
         []
     )
@@ -55,8 +63,8 @@ const App: FC = () => {
     //функция, получает событие клик на оформить заказ
     const getIdOrder = () => {
         setActiveModalName('order')
+        // setActiveModal(true)
 
-        setActiveModal(true)
         dispatch(onModalAC())
 
     }
@@ -112,7 +120,8 @@ const App: FC = () => {
 
             setIng(el[0])
             setActiveModalName('ing')
-            setActiveModal(true)
+            // setActiveModal(true)
+            dispatch(onModalAC())
         }
 
     }
@@ -155,8 +164,7 @@ const App: FC = () => {
 
     return (
         <div className={styles.page}>
-            <ModalApp activeModalName={activeModalName} activeModal={activeModal} setActiveModal={setActiveModal}
-                      ing={ing}/>
+            <ModalApp activeModalName={activeModalName} ing={ing}/>
 
             <div className={styles.app_wrapper}>
 

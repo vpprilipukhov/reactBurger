@@ -1,5 +1,8 @@
 import React from "react";
 import styles from './modalOverlay.module.css'
+import {useTypeSelector} from "../../../hooks/useTypeSelector";
+import {useDispatch} from "react-redux";
+import {offModalAC, onModalAC} from "../../../redux/reduxTools/actions";
 
 interface State {
     _id: string
@@ -20,17 +23,15 @@ interface State {
 
 interface Props {
     props?: React.ReactNode
-    activeFunc: Function
 
 }
 
-const ModalOverlay: React.FC<Props> = ({
-                                           activeFunc,
+const ModalOverlay: React.FC<Props> = () => {
 
-                                       }) => {
+    const dispatch = useDispatch()
 
     const off = () => {
-        activeFunc(false)
+        dispatch(offModalAC())
     }
 
     return (
