@@ -1,15 +1,15 @@
 import React, {FC} from 'react';
 import styles from './app.module.css'
 import AppHeader from "../appHeader/appHeader";
-import BurgerIngredients from "../modal/modalComponentns/burgerIngredients/burgerIngredients";
+import BurgerIngredients from "../burgerIngredients/burgerIngredients";
 import BurgerConstructor from "../burgerConstructor/burgerConstructor";
 import {State, PromiseMy} from "../../tools/types";
 import ModalApp from "../modal/modalApp";
 import {useDispatch} from "react-redux";
-
 import {onModalAC} from "../../redux/reduxTools/actions";
-import {useTypeSelector} from "../../hooks/useTypeSelector";
-import {fetchUsers} from "../../redux/test/user";
+
+//Все изменения внесены, прошу только оставить компонент модал разбитый на 2 файла. Наставник тоже сказал, что такой вариант возможный. Обработку получение api сделаю в redux
+
 
 interface ErrorTS {
     data: string
@@ -26,7 +26,7 @@ const App: FC = () => {
 
     //получение данных
     const url: string = 'https://norma.nomoreparties.space/api/ingredients'
-    const [state, setState] = React.useState<Array<State>>([])
+    const [state, setState] = React.useState<State[]>([])
     const [error, setError] = React.useState<ErrorTS | undefined>()
 
     //список с выбранными ингридиентами
@@ -39,34 +39,25 @@ const App: FC = () => {
     const [activeModalName, setActiveModalName] = React.useState<string>('')
     const [ing, setIng] = React.useState<State | undefined>(undefined)
 
-
-    const activeModalRedux = useTypeSelector(state => state.modalReducer.activeModal)
     const dispatch = useDispatch()
 
-
+    //Все изменения внесены, прошу только оставить компонент модал разбитый на 2 файла. Наставник тоже сказал, что такой вариант возможный. Обработку получение api сделаю в redux
     React.useEffect(
-        // () => {
-        //     getState(url)
-        //         .then(data => setState(data.data))
-        //         .catch(e => setError(e.message))
-        //     error && console.log(error)
-        // },
         () => {
-
-            dispatch(fetchUsers())
-
-
+            getState(url)
+                .then(data => setState(data.data))
+                .catch(e => setError(e.message))
+            error && console.log(error)
         },
         []
     )
 
+
     //функция, получает событие клик на оформить заказ
     const getIdOrder = () => {
         setActiveModalName('order')
-        // setActiveModal(true)
 
         dispatch(onModalAC())
-
     }
 
     //функция, получает id ри нажатии на ингридиет. в зависимости, куда нажали - разные действия
@@ -99,7 +90,7 @@ const App: FC = () => {
                 setStateChoice(newArr)
 
             } else if (el[0]._id === id_bun) {
-                alert('Вы уже выбрали такую булочку!!!')
+                alert('Вы уже выбрали такую булочку!')
 
             } else if (fl_bun && el[0].type === 'bun') {
                 newArr = stateChoice
@@ -120,7 +111,6 @@ const App: FC = () => {
 
             setIng(el[0])
             setActiveModalName('ing')
-            // setActiveModal(true)
             dispatch(onModalAC())
         }
 
@@ -166,11 +156,13 @@ const App: FC = () => {
         <div className={styles.page}>
             <ModalApp activeModalName={activeModalName} ing={ing}/>
 
-            <div className={styles.app_wrapper}>
 
+            <div className={styles.app_wrapper}>
                 <AppHeader/>
                 <BurgerIngredients getIdIngredients={getIdIngredients} state={state}/>
                 <BurgerConstructor getIdOrder={getIdOrder} dell={dell} stateChoice={stateChoice} coast={coast}/>
+
+
             </div>
 
         </div>

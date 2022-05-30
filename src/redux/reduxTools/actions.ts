@@ -1,6 +1,16 @@
 import {OFF_MODAL, ON_MODAL} from "./types";
-import {TaskActionTypes} from "../../tools/types";
 
+interface onModalAC{
+    type: typeof ON_MODAL
+    payload: any[]
+}
+
+interface offModal{
+    type: typeof OFF_MODAL
+    payload: any[]
+}
+
+export type TaskActionTypes = onModalAC | offModal
 
 export function onModalAC(): TaskActionTypes {
     return {
@@ -17,4 +27,10 @@ export function offModalAC(): TaskActionTypes {
 }
 
 
+
+interface actionModal{
+    type: typeof ON_MODAL | typeof OFF_MODAL
+}
+
+export type actionTypes = actionModal
 

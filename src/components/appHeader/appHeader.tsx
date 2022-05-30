@@ -5,11 +5,10 @@ import {
     BurgerIcon,
     ListIcon,
     ProfileIcon
-}
-    from '@ya.praktikum/react-developer-burger-ui-components'
+} from '@ya.praktikum/react-developer-burger-ui-components'
 
 
-function AppHeader() {
+const  AppHeader: React.FC = () => {
 
 
     return (
@@ -30,4 +29,5 @@ function AppHeader() {
 
 }
 
+// @ts-ignore
 export default AppHeader

@@ -3,7 +3,7 @@ import {
     CurrencyIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './burgerIngrSub.module.css'
-import {State} from "../../../../tools/types";
+import {State} from "../../tools/types";
 
 
 interface Props {

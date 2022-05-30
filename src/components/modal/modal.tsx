@@ -7,7 +7,7 @@ import {useTypeSelector} from "../../hooks/useTypeSelector";
 import {useDispatch} from "react-redux";
 import {offModalAC} from "../../redux/reduxTools/actions";
 
-
+//Все изменения внесены, прошу только оставить компонент модал разбитый на 2 файла. Наставник тоже сказал, что такой вариант возможный. Обработку получение api сделаю в redux
 interface Props {
     children?: React.ReactNode
     title: string
@@ -25,7 +25,7 @@ const Modal: React.FC<Props> = ({
     const off = () => {
         dispatch(offModalAC())
     }
-
+//Все изменения внесены, прошу только оставить компонент модал разбитый на 2 файла. Наставник тоже сказал, что такой вариант возможный. Обработку получение api сделаю в redux
 
     return (
 

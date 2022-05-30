@@ -5,7 +5,7 @@ import {
     CurrencyIcon,
     DragIcon,
     LockIcon,
-    DeleteIcon,
+    DeleteIcon, Button,
 } from '@ya.praktikum/react-developer-burger-ui-components'
 import {fchmod} from "fs";
 
@@ -54,7 +54,7 @@ const BurgerConstructor: React.FC<Props> = ({
     const choiceBunTop = stateChoice?.filter((el: State) => el.type === "bun").map((el: State, index: React.Key | null | undefined) => (
 
         <div key={index} className={styles.choiceComponent}>
-            <div className={styles.dragIcon}/>
+            <div className={styles.dragIcon}><DragIcon type={'primary'}/></div>
             <div className={styles.choiceComponentInnerTop}>
                 <div className={styles.choiceComponentImage}><img src={el.image} alt={''}
                                                                   className={styles.choiceComponentImageImage}/></div>
@@ -70,7 +70,7 @@ const BurgerConstructor: React.FC<Props> = ({
     const choiceBunBot = stateChoice?.filter((el: State) => el.type === "bun").map((el: State, index: React.Key | null | undefined) => (
 
         <div key={index} className={styles.choiceComponent}>
-            <div className={styles.dragIcon}/>
+            <div className={styles.dragIcon}><DragIcon type={'primary'}/></div>
             <div className={styles.choiceComponentInnerBot}>
                 <div className={styles.choiceComponentImage}><img src={el.image} alt={''}
                                                                   className={styles.choiceComponentImageImage}/></div>
@@ -107,7 +107,7 @@ const BurgerConstructor: React.FC<Props> = ({
     return (
         <div className={styles.burgerIngredients}>
             {choiceBunTop}
-            <div className={`${styles.choiceComponentFilling} custom-scroll`}>
+            <div className={styles.choiceComponentFilling}>
                 {choice}
             </div>
             {choiceBunBot}
@@ -119,8 +119,10 @@ const BurgerConstructor: React.FC<Props> = ({
                         <div className={styles.iconSum}><CurrencyIcon type={'primary'}/></div>
                     </div>
                     <div className={styles.b}>
-                        <button onClick={get} className={styles.but}><span
-                            className={styles.txtBut}>Оформить заказ</span></button>
+                        <Button  onClick={get} className={styles.but} type="primary" size="large">
+                            <span
+                                className={styles.txtBut}>Оформить заказ</span>
+                        </Button>
                     </div>
 
 

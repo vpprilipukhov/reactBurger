@@ -1,8 +1,6 @@
-import {FETCH_TODOS, OFF_MODAL, ON_MODAL} from "../redux/reduxTools/types";
+import { OFF_MODAL, ON_MODAL} from "../redux/reduxTools/types";
 
-export interface StateR {
-    activeModal: boolean
-}
+
 
 export interface State {
     _id: string
@@ -41,7 +39,7 @@ interface offModal{
 export type TaskActionTypes = onModalAC | offModal
 
 interface actionModal{
-    type: typeof ON_MODAL | typeof OFF_MODAL | typeof FETCH_TODOS
+    type: typeof ON_MODAL | typeof OFF_MODAL
 }
 
 export type actionTypes = actionModal

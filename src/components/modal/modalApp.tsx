@@ -2,11 +2,11 @@ import React from 'react';
 import ModalOverlay from './modalOverlay/modalOverlay'
 import ReactDOM from 'react-dom';
 import Modal from "../modal/modal";
-import IngredientDetails from "./modalComponentns/ingredientDetails/ingredientDetails";
+import IngredientDetails from "../ingredientDetails/ingredientDetails";
 import {State} from "../../tools/types";
 import OrderDetails from "../orderDetails/orderDetails";
 import {useTypeSelector} from "../../hooks/useTypeSelector";
-
+//Все изменения внесены, прошу только оставить компонент модал разбитый на 2 файла. Наставник тоже сказал, что такой вариант возможный. Обработку получение api сделаю в redux
 
 interface Props {
     props?: React.ReactNode
@@ -26,7 +26,7 @@ const ModalApp: React.FC<Props> = ({
 
     const activeModalRedux = useTypeSelector(state => state.modalReducer.activeModal)
 
-
+//Все изменения внесены, прошу только оставить компонент модал разбитый на 2 файла. Наставник тоже сказал, что такой вариант возможный. Обработку получение api сделаю в redux
     React.useEffect(
         () => {
             if (activeModalName === 'ing') {

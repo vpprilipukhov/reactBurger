@@ -1,5 +1,5 @@
-import {FETCH_TODOS, OFF_MODAL, ON_MODAL} from "../reduxTools/types";
-import {actionTypes} from "../../tools/types";
+import {OFF_MODAL, ON_MODAL} from "../reduxTools/types";
+
 
 interface activeType {
     activeModal: boolean,
@@ -11,8 +11,7 @@ const activeModal: activeType = {
 }
 
 interface IChangeFilterAction {
-    type: typeof FETCH_TODOS,
-    payload: any
+    type: string
 }
 
 export const modalReducer = (state: activeType = activeModal, action: IChangeFilterAction): activeType => {
@@ -27,10 +26,6 @@ export const modalReducer = (state: activeType = activeModal, action: IChangeFil
             return {
                 activeModal: false
             }
-
-        case FETCH_TODOS:
-            console.log('12343214325')
-            return state;
 
         default:
             return state;
