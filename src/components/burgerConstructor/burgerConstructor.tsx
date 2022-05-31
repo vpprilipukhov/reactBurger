@@ -119,7 +119,7 @@ const BurgerConstructor: React.FC<Props> = ({
                         <div className={styles.iconSum}><CurrencyIcon type={'primary'}/></div>
                     </div>
                     <div className={styles.b}>
-                        <Button  onClick={get} className={styles.but} type="primary" size="large">
+                        <Button  onClick={get}  type="primary" size="large">
                             <span
                                 className={styles.txtBut}>Оформить заказ</span>
                         </Button>

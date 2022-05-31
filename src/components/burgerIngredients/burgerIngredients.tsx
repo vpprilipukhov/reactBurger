@@ -9,9 +9,6 @@ interface Props {
     props?: React.ReactNode
     state: State[]
     getIdIngredients: Function
-    type: "secondary" | "primary" | undefined
-    size: "small" | "medium" | "large" | undefined
-    onClick: (() => void) | undefined
 
 
 }
