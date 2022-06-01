@@ -2,8 +2,6 @@
 .appHeader {
     grid-area: h;
     display: grid;
-    height: 120px;
-
 
     grid-template-areas:
     "s1 s2 s3";
@@ -16,13 +14,6 @@
     align-items: center;
 
     font-family: Arial, serif;
-
-    padding-top: 20px;
-    position: fixed;
-    left:0;
-    right:0;
-    top:0;
-
 
 }
 
@@ -62,12 +53,14 @@
     width: 178px;
     height: 56px;
 
-    font-family: 'JetBrains Mono';
+    /* desktop/text */
+
+    font-family: 'Jet Brains Mono';
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-
+    /* identical to box height, or 150% */
 
 
 }
@@ -76,4 +69,3 @@
 .child {
 
 }
-

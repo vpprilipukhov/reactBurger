@@ -1,15 +1,13 @@
 import React from 'react';
 import styles from './burgerIngredients.module.css'
 import BurgerIngSub from "./burgerIngSub";
-
+import {State} from "../../tools/types";
 import {Tab} from "@ya.praktikum/react-developer-burger-ui-components";
-import {useTypeSelector} from "../../hooks/useTypeSelector";
-import {State} from "../../redux/component/types";
 
 
 interface Props {
     props?: React.ReactNode
-
+    state: State[]
     getIdIngredients: Function
 
 
@@ -17,19 +15,16 @@ interface Props {
 
 
 const BurgerIngredients: React.FC<Props> = ({
-
+                                                state,
                                                 getIdIngredients
                                             }) => {
 
 
-    const {component, error, loading} = useTypeSelector(state => state.componentReducer)
 
 
-
-
-    const buns: State[] = component?.filter((e: State) => e.type === 'bun')
-    const main: State[] = component?.filter((e: State) => e.type === 'main')
-    const sauce: State[] = component?.filter((e: State) => e.type === 'sauce')
+    const buns: State[] = state?.filter((e: State) => e.type === 'bun')
+    const main: State[] = state?.filter((e: State) => e.type === 'main')
+    const sauce: State[] = state?.filter((e: State) => e.type === 'sauce')
 
     const [current, setCurrent] = React.useState<string>('one')
 
@@ -45,13 +40,13 @@ const BurgerIngredients: React.FC<Props> = ({
             <div className={styles.miniMenu}>
                 <div style={{display: 'flex'}}>
                     <Tab value="one" active={current === 'one'} onClick={onTabClick}>
-                        One
+                        Булки
                     </Tab>
                     <Tab value="two" active={current === 'two'} onClick={onTabClick}>
-                        Two
+                        Соусы
                     </Tab>
                     <Tab value="three" active={current === 'three'} onClick={onTabClick}>
-                        Three
+                        Начинки
                     </Tab>
                 </div>
             </div>

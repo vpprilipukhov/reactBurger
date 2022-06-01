@@ -3,10 +3,9 @@ import ModalOverlay from './modalOverlay/modalOverlay'
 import ReactDOM from 'react-dom';
 import Modal from "../modal/modal";
 import IngredientDetails from "../ingredientDetails/ingredientDetails";
-
+import {State} from "../../tools/types";
 import OrderDetails from "../orderDetails/orderDetails";
 import {useTypeSelector} from "../../hooks/useTypeSelector";
-import {State} from "../../redux/component/types";
 //Все изменения внесены, прошу только оставить компонент модал разбитый на 2 файла. Наставник тоже сказал, что такой вариант возможный. Обработку получение api сделаю в redux
 
 interface Props {

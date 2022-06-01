@@ -1,24 +1,31 @@
 import React, {FC} from 'react';
 import styles from './app.module.css'
-import ModalApp from "../modal/modalApp";
-import {useDispatch} from "react-redux";
-import {Routes, Route} from "react-router-dom";
-import {onModalAC} from "../../redux/reduxTools/actions";
-import {useTypeSelector} from "../../hooks/useTypeSelector";
-import Input from "../input/input";
-
 import AppHeader from "../appHeader/appHeader";
 import BurgerIngredients from "../burgerIngredients/burgerIngredients";
 import BurgerConstructor from "../burgerConstructor/burgerConstructor";
-import { State} from "../../redux/component/types";
-import {fetchComponent} from "../../redux/component/actions";
+import {State, PromiseMy} from "../../tools/types";
+import ModalApp from "../modal/modalApp";
+import {useDispatch} from "react-redux";
+import {onnModalAC} from "../../redux/reduxTools/actions";
 
+//Все изменения внесены, прошу только оставить компонент модал разбитый на 2 файла. Наставник тоже сказал, что такой вариант возможный. Обработку получение api сделаю в redux
+
+
+async function getState(url: string): Promise<PromiseMy> {
+    const response = await fetch(url, {method: 'GET'})
+
+    return response.json()
+}
 
 const App: FC = () => {
 
+    //получение данных
+    const url: string = 'https://norma.nomoreparties.space/api/ingredients'
+    const [state, setState] = React.useState<State[]>([])
+
 
     //список с выбранными ингридиентами
-    const [stateChoice, setStateChoice] = React.useState<Array<State>>([])
+    const [stateChoice, setStateChoice] = React.useState<State[]>([])
     //стоимость выбранных ингридиетов
     const [coast, setCoast] = React.useState<number>(0)
 
@@ -28,26 +35,22 @@ const App: FC = () => {
 
     const dispatch = useDispatch()
 
-    const {component , error, loading} = useTypeSelector(state => state.componentReducer)
-
-
+    //Все изменения внесены, прошу только оставить компонент модал разбитый на 2 файла. Наставник тоже сказал, что такой вариант возможный. Обработку получение api сделаю в redux
     React.useEffect(
         () => {
+            getState(url)
+                .then(data => setState(data.data))
 
-            // @ts-ignore
-            dispatch(fetchComponent())
 
-        },
-        []
+        }, []
     )
 
 
     //функция, получает событие клик на оформить заказ
     const getIdOrder = () => {
         setActiveModalName('order')
-        console.log(component)
-        dispatch(onModalAC())
 
+        dispatch(onnModalAC())
     }
 
     //функция, получает id ри нажатии на ингридиет. в зависимости, куда нажали - разные действия
@@ -60,7 +63,7 @@ const App: FC = () => {
         if (type === 'name') {
 
 
-            const el = component.filter(el => el._id === idEl)
+            const el = state.filter(el => el._id === idEl)
             let fl_bun: boolean = false,
                 id_bun: string = '',
                 i_bun: number = 0,
@@ -72,6 +75,7 @@ const App: FC = () => {
                     id_bun = stateChoice[i]._id
                     i_bun = i
                 }
+
             }
 
             if (!fl_bun && el[0].type === 'bun') {
@@ -79,7 +83,7 @@ const App: FC = () => {
                 setStateChoice(newArr)
 
             } else if (el[0]._id === id_bun) {
-                alert('Вы уже выбрали такую булочку!!!')
+                alert('Вы уже выбрали такую булочку!')
 
             } else if (fl_bun && el[0].type === 'bun') {
                 newArr = stateChoice
@@ -91,20 +95,23 @@ const App: FC = () => {
                 newArr = [...stateChoice, el[0]]
                 setStateChoice(newArr)
             }
+
+
         }
 
         if (type === 'picture') {
-            const el: State[] = component.filter(el => el._id === idEl)
+            const el: State[] = state.filter(el => el._id === idEl)
 
             setIng(el[0])
             setActiveModalName('ing')
-            dispatch(onModalAC())
+            dispatch(onnModalAC())
         }
 
     }
 
     // функция по удалению ингридиентов из выбранного списка
     const dell = (id: string) => {
+
 
         let i_id: number = 0
 
@@ -115,6 +122,7 @@ const App: FC = () => {
             }
 
         }
+
         let newArr: any = stateChoice
 
         newArr.splice(i_id, 1)
@@ -135,6 +143,7 @@ const App: FC = () => {
 
         }, [stateChoice]
     )
+//Все изменения внесены, прошу только оставить компонент модал разбитый на 2 файла. Наставник тоже сказал, что такой вариант возможный. Обработку получение api сделаю в redux
 
 
     return (
@@ -144,17 +153,8 @@ const App: FC = () => {
 
             <div className={styles.app_wrapper}>
                 <AppHeader/>
-
-                <Routes>
-                    <Route path={'/'} element={
-                        <div className={styles.constr}>
-                            <BurgerIngredients getIdIngredients={getIdIngredients}/>
-                            <BurgerConstructor getIdOrder={getIdOrder} dell={dell} stateChoice={stateChoice}
-                                               coast={coast}/>
-                        </div>}/>
-
-                    <Route path={'/input'} element={<Input/>}/>
-                </Routes>
+                <BurgerIngredients getIdIngredients={getIdIngredients} state={state}/>
+                <BurgerConstructor getIdOrder={getIdOrder} dell={dell} stateChoice={stateChoice} coast={coast}/>
 
 
             </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import styles from './ingredientDetails.module.css'
-import {State} from "../../redux/component/types";
+import {State} from "../../tools/types";
 
 
 interface Props {
