@@ -1,10 +1,7 @@
-import {ComponentActionTypes, ComponentAction, State} from "./help/component"
+import {ComponentAction, ComponentActionTypes, ComponentState} from "./types";
 
-interface ComponentState {
-    component: Array<State>
-    loading: boolean,
-    error: any
-}
+
+
 
 const initialState: ComponentState = {
     component: [],

@@ -1,13 +1,19 @@
+import {OFF_MODAL, ON_MODAL} from "../reduxTools/types";
+
+
+export interface activeType {
+    activeModal: boolean,
+
+}
 
 
 
-
-interface onModalAC{
+export interface onModalAC{
     type: typeof ON_MODAL
     payload: any[]
 }
 
-interface offModal{
+export interface offModal{
     type: typeof OFF_MODAL
     payload: any[]
 }

@@ -19,7 +19,6 @@ const Modal: React.FC<Props> = ({
 
                                 }) => {
 
-    const activeModalRedux = useTypeSelector(state => state.modalReducer.activeModal)
     const dispatch = useDispatch()
 
     const off = () => {

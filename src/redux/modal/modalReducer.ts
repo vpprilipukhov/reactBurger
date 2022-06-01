@@ -1,10 +1,5 @@
-import {OFF_MODAL, ON_MODAL} from "../reduxTools/types";
+import {activeType} from "./modalTypes";
 
-
-interface activeType {
-    activeModal: boolean,
-
-}
 
 const activeModal: activeType = {
     activeModal: false
