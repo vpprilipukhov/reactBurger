@@ -3,13 +3,15 @@ import './index.css';
 import App from './components/app/app';
 import {Provider} from 'react-redux'
 import {BrowserRouter} from 'react-router-dom'
-import {createStore, applyMiddleware} from "redux";
-import {rootReducer} from "./redux/rootReducer";
-import thunk from "redux-thunk";
+// import {createStore, applyMiddleware} from "redux";
+// import {rootReducer} from "./redux/rootReducer";
+// import thunk from "redux-thunk";
 import ReactDOM from "react-dom";
+import {setupStore} from "./redux/setupStore";
 
+const store = setupStore()
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+// const store = createStore(rootReducer, applyMiddleware(thunk));
 
 // const root = ReactDOM.createRoot(
 //     document.getElementById('root') as HTMLElement
@@ -22,6 +24,8 @@ const store = createStore(rootReducer, applyMiddleware(thunk));
 //     </Provider>
 // );
 // reportWebVitals();
+
+
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>

@@ -2,10 +2,11 @@ import React from 'react';
 import ModalOverlay from './modalOverlay/modalOverlay'
 import ReactDOM from 'react-dom';
 import Modal from "../modal/modal";
-import IngredientDetails from "../ingredientDetails/ingredientDetails";
-import {State} from "../../tools/types";
-import OrderDetails from "../orderDetails/orderDetails";
-import {useTypeSelector} from "../../hooks/useTypeSelector";
+import IngredientDetails from "./modalComponents/ingredientDetails/ingredientDetails";
+import OrderDetails from "./modalComponents/orderDetails/orderDetails";
+import {State} from "../../redux/types/ingridientTypes";
+import {useAppSelector} from "../../services/hooks/redux";
+
 //Все изменения внесены, прошу только оставить компонент модал разбитый на 2 файла. Наставник тоже сказал, что такой вариант возможный. Обработку получение api сделаю в redux
 
 interface Props {
@@ -24,9 +25,9 @@ const ModalApp: React.FC<Props> = ({
     const [activeIng, setActiveIng] = React.useState<boolean>(false)
     const [activeOrder, setActiveOrder] = React.useState<boolean>(false)
 
-    const activeModalRedux = useTypeSelector(state => state.modalReducer.activeModal)
 
-//Все изменения внесены, прошу только оставить компонент модал разбитый на 2 файла. Наставник тоже сказал, что такой вариант возможный. Обработку получение api сделаю в redux
+    const {activeModal} = useAppSelector(state => state.modalReducer)
+
     React.useEffect(
         () => {
             if (activeModalName === 'ing') {
@@ -37,15 +38,16 @@ const ModalApp: React.FC<Props> = ({
                 setActiveOrder(true)
 
             }
-        }, [activeModalRedux, activeModalName]
+        }, [activeModal, activeModalName]
     )
+
     React.useEffect(
         () => {
-            if (!activeModalRedux) {
+            if (!activeModal) {
                 setActiveOrder(false)
                 setActiveIng(false)
             }
-        }, [activeModalRedux]
+        }, [activeModal]
     )
 
 
@@ -53,8 +55,7 @@ const ModalApp: React.FC<Props> = ({
 
         <main>
 
-
-            {activeModalRedux &&
+            {activeModal &&
                 ReactDOM.createPortal(
                     <div>
                         <ModalOverlay/>

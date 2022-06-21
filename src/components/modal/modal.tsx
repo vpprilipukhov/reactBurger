@@ -3,9 +3,9 @@ import styles from './modal.module.css'
 import {
     CloseIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components'
+import {useAppDispatch} from "../../services/hooks/redux";
+import {modalSlice} from "../../redux/reducer/modalReducer";
 
-import {useDispatch} from "react-redux";
-import {offModalAC} from "../../redux/reduxTools/actions";
 
 interface Props {
     children?: React.ReactNode
@@ -18,11 +18,11 @@ const Modal: React.FC<Props> = ({
 
                                 }) => {
 
-
-    const dispatch = useDispatch()
+    const {offModal} = modalSlice.actions
+    const dispatch = useAppDispatch()
 
     const off = () => {
-        dispatch(offModalAC())
+        dispatch(offModal())
     }
 
     return (
@@ -42,7 +42,6 @@ const Modal: React.FC<Props> = ({
 
                 <div>
                     {children}
-
                 </div>
             </div>
 

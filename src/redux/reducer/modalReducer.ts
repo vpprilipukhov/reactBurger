@@ -1,38 +1,29 @@
-import {OFF_MODAL, ON_MODAL} from "../reduxTools/types";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 
-interface activeType {
-    activeModal: boolean,
-
+export interface modalType {
+    activeModal: boolean
 }
 
-const activeModal: activeType = {
+const initialState: modalType = {
     activeModal: false
 }
 
-interface IChangeFilterAction {
-    type: string
-}
 
-export const modalReducer = (state: activeType = activeModal, action: IChangeFilterAction): activeType => {
-    switch (action.type) {
-        case ON_MODAL:
+export const modalSlice = createSlice({
+    name: 'modal',
+    initialState,
+    reducers: {
+        onModal(state){
+            state.activeModal = true
+        },
 
-            return {
-                activeModal: true
-            }
-
-        case OFF_MODAL:
-            return {
-                activeModal: false
-            }
-
-        default:
-            return state;
-
-
+        offModal(state){ //, action: PayloadAction<string>
+            state.activeModal = false
+        }
     }
 
-}
+})
 
 
+export default modalSlice.reducer

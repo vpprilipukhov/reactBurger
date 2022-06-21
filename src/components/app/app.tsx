@@ -1,59 +1,46 @@
 import React, {FC} from 'react';
-import styles from './app.module.css'
+
 import AppHeader from "../appHeader/appHeader";
 import BurgerIngredients from "../burgerIngredients/burgerIngredients";
 import BurgerConstructor from "../burgerConstructor/burgerConstructor";
-import {State, PromiseMy} from "../../tools/types";
 import ModalApp from "../modal/modalApp";
-import {useDispatch} from "react-redux";
-import {onnModalAC} from "../../redux/reduxTools/actions";
+import {State} from "../../redux/types/ingridientTypes";
+import {fetchIngredient} from "../../redux/action/ingridientAction";
+import styles from './app.module.css'
+import {useAppDispatch, useAppSelector} from "../../services/hooks/redux";
+import {modalSlice} from "../../redux/reducer/modalReducer";
+import {DndProvider} from "react-dnd";
+import {HTML5Backend} from "react-dnd-html5-backend";
 
-//Все изменения внесены, прошу только оставить компонент модал разбитый на 2 файла. Наставник тоже сказал, что такой вариант возможный. Обработку получение api сделаю в redux
-
-
-async function getState(url: string): Promise<PromiseMy> {
-    const response = await fetch(url, {method: 'GET'})
-
-    return response.json()
-}
 
 const App: FC = () => {
 
-    //получение данных
-    const url: string = 'https://norma.nomoreparties.space/api/ingredients'
-    const [state, setState] = React.useState<State[]>([])
-
-
-    //список с выбранными ингридиентами
     const [stateChoice, setStateChoice] = React.useState<State[]>([])
-    //стоимость выбранных ингридиетов
     const [coast, setCoast] = React.useState<number>(0)
 
-    //переменные модальных окон.
     const [activeModalName, setActiveModalName] = React.useState<string>('')
     const [ing, setIng] = React.useState<State | undefined>(undefined)
 
-    const dispatch = useDispatch()
+    const {ingridient,} = useAppSelector(state => state.ingridientReducer)
 
-    //Все изменения внесены, прошу только оставить компонент модал разбитый на 2 файла. Наставник тоже сказал, что такой вариант возможный. Обработку получение api сделаю в redux
+
+    const {onModal} = modalSlice.actions
+    const dispatch = useAppDispatch()
+
     React.useEffect(
         () => {
-            getState(url)
-                .then(data => setState(data.data))
 
+            dispatch(fetchIngredient())
 
-        }, []
+        }, [ingridient]
     )
 
 
-    //функция, получает событие клик на оформить заказ
     const getIdOrder = () => {
         setActiveModalName('order')
-
-        dispatch(onnModalAC())
+        dispatch(onModal())
     }
 
-    //функция, получает id ри нажатии на ингридиет. в зависимости, куда нажали - разные действия
     const getIdIngredients = (id: string) => {
 
         const idEl: string = id.split('|')[0]
@@ -63,7 +50,7 @@ const App: FC = () => {
         if (type === 'name') {
 
 
-            const el = state.filter(el => el._id === idEl)
+            const el = ingridient.filter(el => el._id === idEl)
             let fl_bun: boolean = false,
                 id_bun: string = '',
                 i_bun: number = 0,
@@ -100,16 +87,15 @@ const App: FC = () => {
         }
 
         if (type === 'picture') {
-            const el: State[] = state.filter(el => el._id === idEl)
+            const el: State[] = ingridient.filter(el => el._id === idEl)
 
             setIng(el[0])
             setActiveModalName('ing')
-            dispatch(onnModalAC())
+            dispatch(onModal())
         }
 
     }
 
-    // функция по удалению ингридиентов из выбранного списка
     const dell = (id: string) => {
 
 
@@ -129,7 +115,6 @@ const App: FC = () => {
         setStateChoice([...newArr])
     }
 
-    // оотслеживаем изменения выбранного списка ингридиентов. При добавлении продуктов в выбор, изменяем ценну
     React.useEffect(
         () => {
 
@@ -143,8 +128,6 @@ const App: FC = () => {
 
         }, [stateChoice]
     )
-//Все изменения внесены, прошу только оставить компонент модал разбитый на 2 файла. Наставник тоже сказал, что такой вариант возможный. Обработку получение api сделаю в redux
-
 
     return (
         <div className={styles.page}>
@@ -153,9 +136,11 @@ const App: FC = () => {
 
             <div className={styles.app_wrapper}>
                 <AppHeader/>
-                <BurgerIngredients getIdIngredients={getIdIngredients} state={state}/>
-                <BurgerConstructor getIdOrder={getIdOrder} dell={dell} stateChoice={stateChoice} coast={coast}/>
 
+                <DndProvider backend={HTML5Backend}>
+                    <BurgerIngredients getIdIngredients={getIdIngredients} state={ingridient}/>
+                    <BurgerConstructor getIdOrder={getIdOrder} dell={dell} stateChoice={stateChoice} coast={coast}/>
+                </DndProvider>
 
             </div>
 

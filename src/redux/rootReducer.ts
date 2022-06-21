@@ -1,10 +1,14 @@
-import {combineReducers} from "redux";
-import {modalReducer} from "./reducer/modalReducer";
+import {combineReducers} from "@reduxjs/toolkit"
+
+import ingridientReducer from "./reducer/ingridientReducer";
+import modalReducer from "./reducer/modalReducer";
 
 
 
 export const rootReducer = combineReducers({
-    modalReducer,
+
+    ingridientReducer,
+    modalReducer
 
 })
 

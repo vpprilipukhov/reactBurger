@@ -8,7 +8,7 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components'
 
 
-const  AppHeader: React.FC = () => {
+const AppHeader: React.FC = () => {
 
 
     return (
@@ -29,5 +29,4 @@ const  AppHeader: React.FC = () => {
 
 }
 
-// @ts-ignore
 export default AppHeader

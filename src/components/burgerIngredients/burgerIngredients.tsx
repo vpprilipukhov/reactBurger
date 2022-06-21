@@ -1,15 +1,16 @@
 import React from 'react';
 import styles from './burgerIngredients.module.css'
 import BurgerIngSub from "./burgerIngSub";
-import {State} from "../../tools/types";
+
 import {Tab} from "@ya.praktikum/react-developer-burger-ui-components";
+import {State} from "../../redux/types/ingridientTypes";
+import {useDrag} from "react-dnd";
 
 
 interface Props {
     props?: React.ReactNode
-    state: State[]
+    state: Array<State>
     getIdIngredients: Function
-
 
 }
 
@@ -18,7 +19,6 @@ const BurgerIngredients: React.FC<Props> = ({
                                                 state,
                                                 getIdIngredients
                                             }) => {
-
 
 
 
@@ -32,7 +32,7 @@ const BurgerIngredients: React.FC<Props> = ({
         setCurrent(tab);
     };
 
-    // @ts-ignore
+
     return (
         <div className={styles.burgerIngredients}>
             <div className={styles.header}> Собери бургеры</div>

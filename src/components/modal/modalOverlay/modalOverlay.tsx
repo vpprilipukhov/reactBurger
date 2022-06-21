@@ -1,22 +1,28 @@
 import React from "react";
 import styles from './modalOverlay.module.css'
 
-import {useDispatch} from "react-redux";
-import {offModalAC} from "../../../redux/reduxTools/actions";
+
+import {useAppDispatch, useAppSelector} from "../../../services/hooks/redux";
+import {modalSlice} from "../../../redux/reducer/modalReducer";
+
 
 
 
 interface Props {
     props?: React.ReactNode
-
 }
 
 const ModalOverlay: React.FC<Props> = () => {
 
-    const dispatch = useDispatch()
+
+    const {offModal} = modalSlice.actions
+    const dispatch = useAppDispatch()
+    const {activeModal} = useAppSelector(state => state.modalReducer)
+
 
     const off = () => {
-        dispatch(offModalAC())
+        dispatch(offModal())
+
     }
 
     return (
