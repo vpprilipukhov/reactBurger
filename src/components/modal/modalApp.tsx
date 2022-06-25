@@ -4,27 +4,21 @@ import ReactDOM from 'react-dom';
 import Modal from "../modal/modal";
 import IngredientDetails from "./modalComponents/ingredientDetails/ingredientDetails";
 import OrderDetails from "./modalComponents/orderDetails/orderDetails";
-import {State} from "../../redux/types/ingridientTypes";
 import {useAppSelector} from "../../services/hooks/redux";
 
-//Все изменения внесены, прошу только оставить компонент модал разбитый на 2 файла. Наставник тоже сказал, что такой вариант возможный. Обработку получение api сделаю в redux
 
 interface Props {
     props?: React.ReactNode
-    ing?: State
-    activeModalName: string
 
 
 }
 
-const ModalApp: React.FC<Props> = ({
-                                       ing,
-                                       activeModalName
-                                   }) => {
+const ModalApp: React.FC<Props> = () => {
 
     const [activeIng, setActiveIng] = React.useState<boolean>(false)
     const [activeOrder, setActiveOrder] = React.useState<boolean>(false)
 
+    const activeModalName = useAppSelector(state => state.modalReducer.activeModalName)
 
     const {activeModal} = useAppSelector(state => state.modalReducer)
 
@@ -59,8 +53,7 @@ const ModalApp: React.FC<Props> = ({
                 ReactDOM.createPortal(
                     <div>
                         <ModalOverlay/>
-                        {activeIng && <Modal title={'Детали ингредиента'}><IngredientDetails
-                            ing={ing}/></Modal>}
+                        {activeIng && <Modal title={'Детали ингредиента'}><IngredientDetails/></Modal>}
                         {activeOrder && <Modal title={''}><OrderDetails/></Modal>}
                     </div>,
                     document.getElementById('portal') as HTMLElement

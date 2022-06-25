@@ -1,12 +1,17 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {State} from "../types/ingridientTypes";
 
 
 export interface modalType {
     activeModal: boolean
+    activeModalName: string
+    putIngridient: State | undefined
 }
 
 const initialState: modalType = {
-    activeModal: false
+    activeModal: false,
+    activeModalName: '',
+    putIngridient: undefined
 }
 
 
@@ -20,6 +25,18 @@ export const modalSlice = createSlice({
 
         offModal(state){ //, action: PayloadAction<string>
             state.activeModal = false
+        },
+
+        getOrder(state){
+            state.activeModalName = 'order'
+        },
+
+        getIng(state){
+            state.activeModalName = 'ing'
+        },
+
+        putIngridient(state,  action: PayloadAction<State>){
+            state.putIngridient = action.payload
         }
     }
 

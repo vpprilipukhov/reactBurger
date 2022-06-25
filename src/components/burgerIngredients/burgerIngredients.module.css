@@ -73,6 +73,19 @@
 
 }
 
+.componentMain {
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 24px;
+    grid-row-gap: 32px;
+
+
+    height: auto;
+
+
+}
+
 .textChoice {
     /* desktop/display small */
 

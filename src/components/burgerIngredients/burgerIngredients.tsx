@@ -1,30 +1,21 @@
 import React from 'react';
 import styles from './burgerIngredients.module.css'
 import BurgerIngSub from "./burgerIngSub";
-
 import {Tab} from "@ya.praktikum/react-developer-burger-ui-components";
 import {State} from "../../redux/types/ingridientTypes";
-import {useDrag} from "react-dnd";
+import {useAppSelector} from "../../services/hooks/redux";
 
 
 interface Props {
     props?: React.ReactNode
-    state: Array<State>
-    getIdIngredients: Function
 
 }
 
 
-const BurgerIngredients: React.FC<Props> = ({
-                                                state,
-                                                getIdIngredients
-                                            }) => {
+const BurgerIngredients: React.FC<Props> = ({}) => {
 
 
-
-    const buns: State[] = state?.filter((e: State) => e.type === 'bun')
-    const main: State[] = state?.filter((e: State) => e.type === 'main')
-    const sauce: State[] = state?.filter((e: State) => e.type === 'sauce')
+    const {ingridient} = useAppSelector(state => state.ingridientReducer)
 
     const [current, setCurrent] = React.useState<string>('one')
 
@@ -55,28 +46,46 @@ const BurgerIngredients: React.FC<Props> = ({
                     <div className={styles.textChoice}>
                         Булки
                     </div>
-                    <div>
-                        <BurgerIngSub
-                            getIdIngredients={getIdIngredients}
-                            state={buns}/>
+                    <div className={styles.componentMain}>
+
+
+                        {ingridient?.filter((e: State) => e.type === 'bun').map((e) => {
+                                return (
+                                    <BurgerIngSub key={e._id} state={e}/>
+                                )
+
+                            }
+                        )}
                     </div>
                 </div>
                 <div>
                     <div className={styles.textChoice}>
                         Соусы
                     </div>
-                    <div>
-                        <BurgerIngSub getIdIngredients={getIdIngredients}
-                                      state={sauce}/>
+                    <div className={styles.componentMain}>
+
+                        {ingridient?.filter((e: State) => e.type === 'main').map((e) => {
+                                return (
+                                    <BurgerIngSub key={e._id} state={e}/>
+                                )
+
+                            }
+                        )}
                     </div>
                 </div>
                 <div>
                     <div className={styles.textChoice}>
                         Начинки
                     </div>
-                    <div>
-                        <BurgerIngSub getIdIngredients={getIdIngredients}
-                                      state={main}/>
+                    <div className={styles.componentMain}>
+
+                        {ingridient?.filter((e: State) => e.type === 'sauce').map((e) => {
+                                return (
+                                    <BurgerIngSub key={e._id} state={e}/>
+                                )
+
+                            }
+                        )}
                     </div>
 
                 </div>

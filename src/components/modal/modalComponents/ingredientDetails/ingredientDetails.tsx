@@ -1,17 +1,15 @@
 import React from "react";
 import styles from './ingredientDetails.module.css'
-import {State} from "../../../../redux/types/ingridientTypes";
+import {useAppSelector} from "../../../../services/hooks/redux";
 
 
 interface Props {
-    ing?: State | undefined
+
 }
 
-const IngredientDetails: React.FC<Props> = ({
-                                                ing
+const IngredientDetails: React.FC<Props> = () => {
 
-                                            }) => {
-
+    const ing = useAppSelector(state => state.modalReducer.putIngridient)
 
     return (
 
