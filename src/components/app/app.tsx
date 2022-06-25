@@ -16,12 +16,9 @@ const App: FC = () => {
 
     React.useEffect(
         () => {
-
             dispatch(fetchIngredient())
-
         }, []
     )
-
 
     return (
         <div className={styles.page}>
