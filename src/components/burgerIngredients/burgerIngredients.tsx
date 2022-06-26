@@ -1,36 +1,27 @@
 import React from 'react';
 import styles from './burgerIngredients.module.css'
 import BurgerIngSub from "./burgerIngSub";
-import {State} from "../../tools/types";
-
+import {Tab} from "@ya.praktikum/react-developer-burger-ui-components";
+import {State} from "../../redux/types/ingridientTypes";
+import {useAppSelector} from "../../services/hooks/redux";
 
 
 interface Props {
     props?: React.ReactNode
-    state: any
-    getIdIngredients: Function
-
 
 }
 
 
-const BurgerIngredients: React.FC<Props> = ({
-                                                state,
-                                                getIdIngredients
-                                            }) => {
-
-    // const handelStateChoice: React.MouseEventHandler = (e) => {
-    //     props.onChange(e)
-    // }
-    //
-    // const getIdIngredients: React.ReactEventHandler = (e) => {
-    //     props.getIdIngredients(e)
-    // }
+const BurgerIngredients: React.FC<Props> = ({}) => {
 
 
-    const buns: State[] = state?.filter((e: State) => e.type === 'bun')
-    const main: State[] = state?.filter((e: State) => e.type === 'main')
-    const sauce: State[] = state?.filter((e: State) => e.type === 'sauce')
+    const {ingridient} = useAppSelector(state => state.ingridientReducer)
+
+    const [current, setCurrent] = React.useState<string>('one')
+
+    const onTabClick = (tab: string) => {
+        setCurrent(tab);
+    };
 
 
     return (
@@ -38,37 +29,63 @@ const BurgerIngredients: React.FC<Props> = ({
             <div className={styles.header}> Собери бургеры</div>
 
             <div className={styles.miniMenu}>
-                <div> Булки</div>
-                <div> Соусы</div>
-                <div> Начинки</div>
+                <div style={{display: 'flex'}}>
+                    <Tab value="one" active={current === 'one'} onClick={onTabClick}>
+                        Булки
+                    </Tab>
+                    <Tab value="two" active={current === 'two'} onClick={onTabClick}>
+                        Соусы
+                    </Tab>
+                    <Tab value="three" active={current === 'three'} onClick={onTabClick}>
+                        Начинки
+                    </Tab>
+                </div>
             </div>
             <div className={styles.blockComponent}>
                 <div>
                     <div className={styles.textChoice}>
                         Булки
                     </div>
-                    <div>
-                        <BurgerIngSub
-                            getIdIngredients = {getIdIngredients}
-                            state={buns}/>
+                    <div className={styles.componentMain}>
+
+
+                        {ingridient?.filter((e: State) => e.type === 'bun').map((e) => {
+                                return (
+                                    <BurgerIngSub key={e._id} state={e}/>
+                                )
+
+                            }
+                        )}
                     </div>
                 </div>
                 <div>
                     <div className={styles.textChoice}>
                         Соусы
                     </div>
-                    <div>
-                        <BurgerIngSub getIdIngredients = {getIdIngredients}
-                            state={sauce}/>
+                    <div className={styles.componentMain}>
+
+                        {ingridient?.filter((e: State) => e.type === 'main').map((e) => {
+                                return (
+                                    <BurgerIngSub key={e._id} state={e}/>
+                                )
+
+                            }
+                        )}
                     </div>
                 </div>
                 <div>
                     <div className={styles.textChoice}>
                         Начинки
                     </div>
-                    <div>
-                        <BurgerIngSub getIdIngredients={getIdIngredients}
-                            state={main}/>
+                    <div className={styles.componentMain}>
+
+                        {ingridient?.filter((e: State) => e.type === 'sauce').map((e) => {
+                                return (
+                                    <BurgerIngSub key={e._id} state={e}/>
+                                )
+
+                            }
+                        )}
                     </div>
 
                 </div>

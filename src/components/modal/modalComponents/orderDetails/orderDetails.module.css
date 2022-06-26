@@ -1,7 +1,8 @@
 .main {
     display: grid;
-    grid-template-rows: 120px 30px 140px 24px 18px;
+    grid-template-rows: 120px 30px 280px 24px 18px;
     grid-row-gap: 16px;
+
     padding-top: 8px;
     padding-bottom: 30px;
 
@@ -45,7 +46,10 @@
 
 .checkMark{
     display: flex;
+
     justify-content: center;
+    padding-top: 60px;
+    padding-bottom: 60px;
 
 }
 
