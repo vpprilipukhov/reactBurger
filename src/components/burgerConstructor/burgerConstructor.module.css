@@ -133,6 +133,21 @@
     font-size: 16px;
 }
 
+.choiceLock {
+    display: grid;
+    align-content: center;
+    justify-content: center;
+
+    background-repeat: no-repeat;
+
+    padding: 0;
+
+
+    width: 22px;
+
+
+}
+
 .choiceComponentDell {
     display: grid;
     align-content: center;
@@ -292,8 +307,6 @@
     /* Text */
 
 
-
-
     /* desktop/text */
 
     font-family: 'Jet Brains Mono';
@@ -329,8 +342,6 @@
     width: 215px;
 
     padding: 18px 48px;
-
-
 
 
     /* button/normal */

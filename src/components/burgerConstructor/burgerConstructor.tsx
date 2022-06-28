@@ -31,6 +31,7 @@ const BurgerConstructor: React.FC<Props> = () => {
 
     const bun: StateChoice | undefined = ingridientChoice.filter(e => e.type === 'bun')[0]
 
+
     const handleDrop = (itemId: { id: string }) => {
 
         let el: State[] = ingridient.filter(el => el._id === itemId.id)
@@ -56,32 +57,24 @@ const BurgerConstructor: React.FC<Props> = () => {
         getIdOrder()
     }
 
-    const moveStateChoice = useCallback(
-        (dragIndex, hoverIndex) => {
-            dispatch(moveChoice({dragIndex, hoverIndex}))
 
-        },
-        [ingridientChoice],
+    const ingridientMap = ingridientChoice.filter(e => e.type !== 'bun').map((e, i) => {
+            return (
+                <BurgerConstructorSub key={e.newId} index={i} state={e}/>
+            )
+        }
     )
 
 
     return (
         <div ref={dropTarget} className={styles.burgerIngredients}>
-            {bun!! && <BurgerConstructorSub state={bun} index={999} key={bun?.newId} position={'top'}
-                                            moveStateChoice={moveStateChoice}/>
+            {bun!! && <BurgerConstructorSub state={bun} index={999} key={bun?.newId + 'top'} position={'top'}/>
             }
 
             <div className={styles.choiceComponentFilling}>
-                {ingridientChoice.filter(e => e.type !== 'bun').map((e, i) => {
-                        return (
-                            <BurgerConstructorSub key={e.newId} moveStateChoice={moveStateChoice}
-                                                  index={i} state={e}/>
-                        )
-                    }
-                )}
+                {ingridientMap}
             </div>
-            {bun!! && < BurgerConstructorSub state={bun} index={999} key={bun?.newId + 'bot'} position={'bot'}
-                                             moveStateChoice={moveStateChoice}/>
+            {bun!! && < BurgerConstructorSub state={bun} index={999} key={bun?.newId + 'bot'} position={'bot'}/>
             }
             <div className={styles.sum}>
                 <div className={styles.sumContainer}>

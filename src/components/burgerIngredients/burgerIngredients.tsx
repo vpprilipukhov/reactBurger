@@ -19,6 +19,30 @@ const BurgerIngredients: React.FC<Props> = ({}) => {
 
     const [current, setCurrent] = React.useState<string>('one')
 
+
+    const ingridientMapBun = ingridient?.filter((e: State) => e.type === 'bun').map((e) => {
+            return (
+                <BurgerIngSub key={e._id} state={e}/>
+            )
+        }
+    )
+
+
+    const ingridientMapMain = ingridient?.filter((e: State) => e.type === 'main').map((e) => {
+            return (
+                <BurgerIngSub key={e._id} state={e}/>
+            )
+        }
+    )
+
+
+    const ingridientMapSauce = ingridient?.filter((e: State) => e.type === 'sauce').map((e) => {
+            return (
+                <BurgerIngSub key={e._id} state={e}/>
+            )
+        }
+    )
+
     const onTabClick = (tab: string) => {
         setCurrent(tab);
     };
@@ -30,13 +54,13 @@ const BurgerIngredients: React.FC<Props> = ({}) => {
 
             <div className={styles.miniMenu}>
                 <div style={{display: 'flex'}}>
-                    <Tab value="one" active={current === 'one'} onClick={onTabClick}>
+                    <Tab value="bun" active={current === 'bun'} onClick={onTabClick}>
                         Булки
                     </Tab>
-                    <Tab value="two" active={current === 'two'} onClick={onTabClick}>
+                    <Tab value="sauce" active={current === 'sauce'} onClick={onTabClick}>
                         Соусы
                     </Tab>
-                    <Tab value="three" active={current === 'three'} onClick={onTabClick}>
+                    <Tab value="main" active={current === 'main'} onClick={onTabClick}>
                         Начинки
                     </Tab>
                 </div>
@@ -47,15 +71,7 @@ const BurgerIngredients: React.FC<Props> = ({}) => {
                         Булки
                     </div>
                     <div className={styles.componentMain}>
-
-
-                        {ingridient?.filter((e: State) => e.type === 'bun').map((e) => {
-                                return (
-                                    <BurgerIngSub key={e._id} state={e}/>
-                                )
-
-                            }
-                        )}
+                        {ingridientMapBun}
                     </div>
                 </div>
                 <div>
@@ -64,13 +80,8 @@ const BurgerIngredients: React.FC<Props> = ({}) => {
                     </div>
                     <div className={styles.componentMain}>
 
-                        {ingridient?.filter((e: State) => e.type === 'main').map((e) => {
-                                return (
-                                    <BurgerIngSub key={e._id} state={e}/>
-                                )
+                        {ingridientMapSauce}
 
-                            }
-                        )}
                     </div>
                 </div>
                 <div>
@@ -79,13 +90,8 @@ const BurgerIngredients: React.FC<Props> = ({}) => {
                     </div>
                     <div className={styles.componentMain}>
 
-                        {ingridient?.filter((e: State) => e.type === 'sauce').map((e) => {
-                                return (
-                                    <BurgerIngSub key={e._id} state={e}/>
-                                )
+                        {ingridientMapMain}
 
-                            }
-                        )}
                     </div>
 
                 </div>

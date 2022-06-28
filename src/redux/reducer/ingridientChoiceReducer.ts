@@ -74,12 +74,13 @@ export const ingridientChoiceSlice = createSlice({
         },
 
         moveChoice(state, action: PayloadAction<{ dragIndex: number, hoverIndex: number }>) {
-            const dragItem = state.ingridientChoice[action.payload.dragIndex]
-            const hoverItem = state.ingridientChoice[action.payload.hoverIndex]
-            const updatedPets = state.ingridientChoice
-            updatedPets[action.payload.dragIndex] = hoverItem
-            updatedPets[action.payload.hoverIndex] = dragItem
-            state.ingridientChoice = updatedPets
+            const ingridientChoice = [...state.ingridientChoice]
+            ingridientChoice.splice(
+                action.payload.hoverIndex,
+                0,
+                ingridientChoice.splice(action.payload.dragIndex, 1)[0]
+            );
+            state.ingridientChoice = ingridientChoice
 
         },
 
