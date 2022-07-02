@@ -5,7 +5,7 @@ import {
 import styles from './burgerIngrSub.module.css'
 import {State} from "../../redux/types/ingridientTypes";
 import {useDrag} from "react-dnd";
-import {useAppDispatch, useAppSelector} from "../../services/hooks/redux";
+import {useAppDispatch, useAppSelector} from "../../auxiliary/hooks/redux";
 import {modalSlice} from "../../redux/reducer/modalReducer";
 import {ingridientChoiceSlice} from "../../redux/reducer/ingridientChoiceReducer";
 
@@ -30,7 +30,7 @@ const BurgerIngSub: React.FC<Props> = ({
     const dispatch = useAppDispatch()
 
     const id = state._id
-    const [{isDrag}, dragRef] = useDrag({
+    const [, dragRef] = useDrag({
         type: "ing",
         item: {id},
         collect: monitor => ({

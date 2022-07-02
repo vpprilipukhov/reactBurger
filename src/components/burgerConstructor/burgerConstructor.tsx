@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React from 'react';
 import styles from './burgerConstructor.module.css'
 import {
     CurrencyIcon,
@@ -7,7 +7,7 @@ import {
 import {State, StateChoice} from "../../redux/types/ingridientTypes";
 import {useDrop} from "react-dnd";
 import {BurgerConstructorSub} from "./burgerConstructorSub";
-import {useAppDispatch, useAppSelector} from "../../services/hooks/redux";
+import {useAppDispatch, useAppSelector} from "../../auxiliary/hooks/redux";
 import {ingridientChoiceSlice} from "../../redux/reducer/ingridientChoiceReducer";
 import {modalSlice} from "../../redux/reducer/modalReducer";
 
@@ -26,7 +26,7 @@ const BurgerConstructor: React.FC<Props> = () => {
 
 
     const {onModal, getOrder} = modalSlice.actions
-    const {appendIng, moveChoice} = ingridientChoiceSlice.actions
+    const {appendIng} = ingridientChoiceSlice.actions
     const dispatch = useAppDispatch()
 
     const bun: StateChoice | undefined = ingridientChoice.filter(e => e.type === 'bun')[0]

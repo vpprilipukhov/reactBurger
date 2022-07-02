@@ -3,7 +3,7 @@ import styles from './modal.module.css'
 import {
     CloseIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components'
-import {useAppDispatch} from "../../services/hooks/redux";
+import {useAppDispatch} from "../../auxiliary/hooks/redux";
 import {modalSlice} from "../../redux/reducer/modalReducer";
 
 

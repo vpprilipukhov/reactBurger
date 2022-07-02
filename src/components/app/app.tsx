@@ -5,7 +5,7 @@ import BurgerConstructor from "../burgerConstructor/burgerConstructor";
 import ModalApp from "../modal/modalApp";
 import {fetchIngredient} from "../../redux/action/ingridientAction";
 import styles from './app.module.css'
-import {useAppDispatch} from "../../services/hooks/redux";
+import {useAppDispatch} from "../../auxiliary/hooks/redux";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
 
@@ -17,7 +17,7 @@ const App: FC = () => {
     React.useEffect(
         () => {
             dispatch(fetchIngredient())
-        }, []
+        }, [dispatch]
     )
 
     return (

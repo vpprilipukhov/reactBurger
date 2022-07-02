@@ -3,7 +3,7 @@ import styles from './burgerIngredients.module.css'
 import BurgerIngSub from "./burgerIngSub";
 import {Tab} from "@ya.praktikum/react-developer-burger-ui-components";
 import {State} from "../../redux/types/ingridientTypes";
-import {useAppSelector} from "../../services/hooks/redux";
+import {useAppSelector} from "../../auxiliary/hooks/redux";
 
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
 }
 
 
-const BurgerIngredients: React.FC<Props> = ({}) => {
+const BurgerIngredients: React.FC<Props> = () => {
 
 
     const {ingridient} = useAppSelector(state => state.ingridientReducer)

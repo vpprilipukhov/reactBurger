@@ -3,7 +3,7 @@ import styles from "./burgerConstructor.module.css";
 import {CurrencyIcon, DeleteIcon, DragIcon, LockIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import {StateChoice} from "../../redux/types/ingridientTypes";
 import {ingridientChoiceSlice} from "../../redux/reducer/ingridientChoiceReducer";
-import {useAppDispatch, useAppSelector} from "../../services/hooks/redux";
+import {useAppDispatch, useAppSelector} from "../../auxiliary/hooks/redux";
 import {useDrag, useDrop} from "react-dnd";
 
 
@@ -21,34 +21,58 @@ export const BurgerConstructorSub: React.FC<Props> = ({position, state, index}) 
 
     const {dell, moveChoice} = ingridientChoiceSlice.actions
     const dispatch = useAppDispatch()
+    const ingredientData = useAppSelector(state => state.ingridientChoiceReducer.ingridientChoice)
 
-
-    const ref = useRef()
+    const ref = useRef(null)
 
     const [, drop] = useDrop({
-        accept: 'SORT_INGREDIENT',
+        accept:["SORT_INGREDIENT"],
+        collect(monitor) {
+            return {
+                handlerId: monitor.getHandlerId(),
+            };
+        },
         hover: (item, monitor) => {
 
             // @ts-ignore
             const dragIndex = item.index
             const hoverIndex = index
+            if (dragIndex === hoverIndex) {
+                return;
+            }
+            // @ts-ignore
+            const hoverBoundingRect = ref.current?.getBoundingClientRect();
+            const hoverMiddleY =
+                (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+            const clientOffset = monitor.getClientOffset();
+            // @ts-ignore
+            const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+            if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+                return;
+            }
+            if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+                return;
+            }
             dispatch(moveChoice({dragIndex, hoverIndex}))
+            // @ts-ignore
+            item.index = hoverIndex;
         },
     })
 
-    const [{isDragging}, drag] = useDrag({
+    const [{ isDragging }, drag] = useDrag({
         type: "SORT_INGREDIENT",
+
         item: () => {
-            return { index};
+            // @ts-ignore
+
+            return { ingredientData, index };
         },
         collect: (monitor) => ({
             isDragging: monitor.isDragging(),
         }),
     });
     const opacity = isDragging ? 0 : 1;
-
-    drag(drop(ref))
-
+    drag(drop(ref));
 
     // просто вызов
 

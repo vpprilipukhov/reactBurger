@@ -1,6 +1,6 @@
 import React from "react";
 import styles from './ingredientDetails.module.css'
-import {useAppSelector} from "../../../../services/hooks/redux";
+import {useAppSelector} from "../../../../auxiliary/hooks/redux";
 
 
 interface Props {

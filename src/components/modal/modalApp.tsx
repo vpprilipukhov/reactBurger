@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import Modal from "../modal/modal";
 import IngredientDetails from "./modalComponents/ingredientDetails/ingredientDetails";
 import OrderDetails from "./modalComponents/orderDetails/orderDetails";
-import {useAppSelector} from "../../services/hooks/redux";
+import {useAppSelector} from "../../auxiliary/hooks/redux";
 
 
 interface Props {

@@ -1,17 +1,20 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {State} from "../types/ingridientTypes";
+import {v4 as uuid} from "uuid";
 
 
 export interface modalType {
     activeModal: boolean
     activeModalName: string
     putIngridient: State | undefined
+    idOrder: string
 }
 
 const initialState: modalType = {
     activeModal: false,
     activeModalName: '',
-    putIngridient: undefined
+    putIngridient: undefined,
+    idOrder: ''
 }
 
 
@@ -29,6 +32,7 @@ export const modalSlice = createSlice({
 
         getOrder(state){
             state.activeModalName = 'order'
+            state.idOrder =  uuid().slice(0,8)
         },
 
         getIng(state){
