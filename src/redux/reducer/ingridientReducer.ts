@@ -7,12 +7,14 @@ interface ingridientState {
     ingridient: State[]
     isLoading: boolean
     error: string
+    currentTab : string
 }
 
 const initialState: ingridientState = {
     ingridient: [],
     isLoading: false,
-    error: ''
+    error: '',
+    currentTab: 'bun'
 }
 
 
@@ -20,6 +22,11 @@ export const ingridientSlice = createSlice({
     name: 'ingridient',
     initialState,
     reducers: {
+
+        switchTab(state, action: PayloadAction<string>){
+            state.currentTab = action.payload
+
+        },
         ingridientFetching(state) {
             state.isLoading = true;
 
@@ -34,6 +41,8 @@ export const ingridientSlice = createSlice({
             state.isLoading = false;
             state.error = action.payload
         },
+
+
     },
 })
 // extraReducers: {

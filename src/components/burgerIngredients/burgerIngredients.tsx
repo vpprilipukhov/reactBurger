@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import styles from './burgerIngredients.module.css'
 import BurgerIngSub from "./burgerIngSub";
 import {Tab} from "@ya.praktikum/react-developer-burger-ui-components";
 import {State} from "../../redux/types/ingridientTypes";
-import {useAppSelector} from "../../auxiliary/hooks/redux";
+import {useAppDispatch, useAppSelector} from "../../auxiliary/hooks/redux";
+import {useInView} from "react-intersection-observer";
+import {ingridientSlice} from "../../redux/reducer/ingridientReducer";
 
 
 interface Props {
@@ -13,6 +15,70 @@ interface Props {
 
 
 const BurgerIngredients: React.FC<Props> = () => {
+
+    const bunsRef = useRef<HTMLLIElement>(null);
+    const saucesRef = useRef<HTMLLIElement>(null);
+    const mainsRef = useRef<HTMLLIElement>(null);
+    const tabsRef = useRef<HTMLDivElement>(null);
+    const dispatch = useAppDispatch()
+    const {switchTab} = ingridientSlice.actions
+    const currentTab = useAppSelector(state => state.ingridientReducer.currentTab)
+
+
+    const selectGroup = (name: string) => {
+        dispatch(switchTab(name));
+
+        switch (name) {
+            case "bun":
+                setCurrent("bun");
+                bunsRef.current?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                    inline: "nearest",
+                });
+                break;
+            case "sauce":
+                setCurrent("sauce");
+                saucesRef.current?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                    inline: "nearest",
+                });
+                break;
+            case "main":
+                setCurrent("main");
+                mainsRef.current?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                    inline: "nearest",
+                });
+                break;
+        }
+    };
+
+    const handleScrollGroups = () => {
+        const tabsBottom = tabsRef.current?.getBoundingClientRect().bottom;
+        const bunsTop = bunsRef.current?.getBoundingClientRect().top;
+        const saucesTop = saucesRef.current?.getBoundingClientRect().top;
+        const mainsTop = mainsRef.current?.getBoundingClientRect().top;
+
+        if (!tabsBottom || !bunsTop || !saucesTop || !mainsTop) {
+            return;
+        }
+
+        const bunsDelta = Math.abs(bunsTop - tabsBottom);
+        const saucesDelta = Math.abs(saucesTop - tabsBottom);
+        const mainsDelta = Math.abs(mainsTop - tabsBottom);
+
+        const min = Math.min(bunsDelta, saucesDelta, mainsDelta);
+
+        const newTab =
+            min === bunsDelta ? "bun" : min === saucesDelta ? "sauce" : "main";
+
+        if (newTab !== currentTab) {
+            dispatch(switchTab(newTab));
+        }
+    };
 
 
     const {ingridient} = useAppSelector(state => state.ingridientReducer)
@@ -43,30 +109,31 @@ const BurgerIngredients: React.FC<Props> = () => {
         }
     )
 
-    const onTabClick = (tab: string) => {
-        setCurrent(tab);
-    };
+    // const onTabClick = (tab: string) => {
+    //     setCurrent(tab);
+    // };
 
 
     return (
         <div className={styles.burgerIngredients}>
-            <div className={styles.header}> Собери бургеры</div>
+            <div className={styles.header}> Соберите бургер</div>
 
-            <div className={styles.miniMenu}>
+            <div className={styles.miniMenu} ref={tabsRef}>
                 <div style={{display: 'flex'}}>
-                    <Tab value="bun" active={current === 'bun'} onClick={onTabClick}>
+                    <Tab value="bun" active={current === 'bun'} onClick={selectGroup}>
                         Булки
                     </Tab>
-                    <Tab value="sauce" active={current === 'sauce'} onClick={onTabClick}>
+                    <Tab value="sauce" active={current === 'sauce'} onClick={selectGroup}>
                         Соусы
                     </Tab>
-                    <Tab value="main" active={current === 'main'} onClick={onTabClick}>
+                    <Tab value="main" active={current === 'main'} onClick={selectGroup}>
                         Начинки
                     </Tab>
                 </div>
             </div>
-            <div className={styles.blockComponent}>
-                <div>
+            <div className={styles.blockComponent} onScroll={handleScrollGroups}>
+
+                <div ref={bunsRef}>
                     <div className={styles.textChoice}>
                         Булки
                     </div>
@@ -74,7 +141,7 @@ const BurgerIngredients: React.FC<Props> = () => {
                         {ingridientMapBun}
                     </div>
                 </div>
-                <div>
+                <div ref={saucesRef}>
                     <div className={styles.textChoice}>
                         Соусы
                     </div>
@@ -84,7 +151,7 @@ const BurgerIngredients: React.FC<Props> = () => {
 
                     </div>
                 </div>
-                <div>
+                <div ref={mainsRef}>
                     <div className={styles.textChoice}>
                         Начинки
                     </div>
