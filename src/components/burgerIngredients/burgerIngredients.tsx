@@ -4,7 +4,6 @@ import BurgerIngSub from "./burgerIngSub";
 import {Tab} from "@ya.praktikum/react-developer-burger-ui-components";
 import {State} from "../../redux/types/ingridientTypes";
 import {useAppDispatch, useAppSelector} from "../../auxiliary/hooks/redux";
-import {useInView} from "react-intersection-observer";
 import {ingridientSlice} from "../../redux/reducer/ingridientReducer";
 
 
@@ -30,7 +29,8 @@ const BurgerIngredients: React.FC<Props> = () => {
 
         switch (name) {
             case "bun":
-                setCurrent("bun");
+
+
                 bunsRef.current?.scrollIntoView({
                     behavior: "smooth",
                     block: "start",
@@ -38,7 +38,6 @@ const BurgerIngredients: React.FC<Props> = () => {
                 });
                 break;
             case "sauce":
-                setCurrent("sauce");
                 saucesRef.current?.scrollIntoView({
                     behavior: "smooth",
                     block: "start",
@@ -46,7 +45,6 @@ const BurgerIngredients: React.FC<Props> = () => {
                 });
                 break;
             case "main":
-                setCurrent("main");
                 mainsRef.current?.scrollIntoView({
                     behavior: "smooth",
                     block: "start",
@@ -83,8 +81,6 @@ const BurgerIngredients: React.FC<Props> = () => {
 
     const {ingridient} = useAppSelector(state => state.ingridientReducer)
 
-    const [current, setCurrent] = React.useState<string>('one')
-
 
     const ingridientMapBun = ingridient?.filter((e: State) => e.type === 'bun').map((e) => {
             return (
@@ -109,39 +105,35 @@ const BurgerIngredients: React.FC<Props> = () => {
         }
     )
 
-    // const onTabClick = (tab: string) => {
-    //     setCurrent(tab);
-    // };
-
-
+    // @ts-ignore
     return (
         <div className={styles.burgerIngredients}>
             <div className={styles.header}> Соберите бургер</div>
 
-            <div className={styles.miniMenu} ref={tabsRef}>
-                <div style={{display: 'flex'}}>
-                    <Tab value="bun" active={current === 'bun'} onClick={selectGroup}>
+            <div className={styles.miniMenu}>
+                <div style={{display: 'flex'}} ref={tabsRef}>
+                    <Tab value="bun" active={currentTab === 'bun'} onClick={selectGroup}>
                         Булки
                     </Tab>
-                    <Tab value="sauce" active={current === 'sauce'} onClick={selectGroup}>
+                    <Tab value="sauce" active={currentTab === 'sauce'} onClick={selectGroup}>
                         Соусы
                     </Tab>
-                    <Tab value="main" active={current === 'main'} onClick={selectGroup}>
+                    <Tab value="main" active={currentTab === 'main'} onClick={selectGroup}>
                         Начинки
                     </Tab>
                 </div>
             </div>
             <div className={styles.blockComponent} onScroll={handleScrollGroups}>
 
-                <div ref={bunsRef}>
+                <li ref={bunsRef} className={styles.list}>
                     <div className={styles.textChoice}>
                         Булки
                     </div>
                     <div className={styles.componentMain}>
                         {ingridientMapBun}
                     </div>
-                </div>
-                <div ref={saucesRef}>
+                </li>
+                <li ref={saucesRef} className={styles.list}>
                     <div className={styles.textChoice}>
                         Соусы
                     </div>
@@ -150,8 +142,8 @@ const BurgerIngredients: React.FC<Props> = () => {
                         {ingridientMapSauce}
 
                     </div>
-                </div>
-                <div ref={mainsRef}>
+                </li>
+                <li ref={mainsRef} className={styles.list}>
                     <div className={styles.textChoice}>
                         Начинки
                     </div>
@@ -161,7 +153,7 @@ const BurgerIngredients: React.FC<Props> = () => {
 
                     </div>
 
-                </div>
+                </li>
             </div>
 
 

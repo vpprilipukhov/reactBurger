@@ -45,7 +45,6 @@ export const ingridientChoiceSlice = createSlice({
             } else if (action.payload.type === 'bun' && state.bun === undefined) {
                 const newState: StateChoice = {...action.payload, 'newId': uuid()}
                 state.bun = newState
-                state.ingridientChoice.push(newState)
                 state.coast += (action.payload.price) * 2
 
             } else {
@@ -67,6 +66,7 @@ export const ingridientChoiceSlice = createSlice({
                 } else {
                     alert('У вас уже есть такая булочка, возьмите другую))')
                 }
+
 
             }
 

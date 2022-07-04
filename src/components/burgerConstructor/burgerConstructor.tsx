@@ -4,7 +4,7 @@ import {
     CurrencyIcon,
     Button,
 } from '@ya.praktikum/react-developer-burger-ui-components'
-import {State, StateChoice} from "../../redux/types/ingridientTypes";
+import {State} from "../../redux/types/ingridientTypes";
 import {useDrop} from "react-dnd";
 import {BurgerConstructorSub} from "./burgerConstructorSub";
 import {useAppDispatch, useAppSelector} from "../../auxiliary/hooks/redux";
@@ -22,14 +22,12 @@ const BurgerConstructor: React.FC<Props> = () => {
 
 
     const ingridient = useAppSelector(state => state.ingridientReducer.ingridient)
-    const {coast, ingridientChoice} = useAppSelector(state => state.ingridientChoiceReducer)
+    const {coast, ingridientChoice, bun} = useAppSelector(state => state.ingridientChoiceReducer)
 
 
     const {onModal, getOrder} = modalSlice.actions
     const {appendIng} = ingridientChoiceSlice.actions
     const dispatch = useAppDispatch()
-
-    const bun: StateChoice | undefined = ingridientChoice.filter(e => e.type === 'bun')[0]
 
 
     const handleDrop = (itemId: { id: string }) => {
