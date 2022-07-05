@@ -4,7 +4,7 @@ import BurgerIngSub from "./burgerIngSub";
 import {Tab} from "@ya.praktikum/react-developer-burger-ui-components";
 import {State} from "../../auxiliary/types/ingridientTypes";
 import {useAppDispatch, useAppSelector} from "../../auxiliary/hooks/redux";
-import {ingridientSlice} from "../../redux/reducer/ingridientReducer";
+import {ingridientSlice} from "../../services/reducer/ingridientReducer";
 
 
 interface Props {

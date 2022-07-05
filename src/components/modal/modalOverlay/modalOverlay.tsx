@@ -1,7 +1,7 @@
 import React from "react";
 import styles from './modalOverlay.module.css'
 import {useAppDispatch} from "../../../auxiliary/hooks/redux";
-import {modalSlice} from "../../../redux/reducer/modalReducer";
+import {modalSlice} from "../../../services/reducer/modalReducer";
 
 
 

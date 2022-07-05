@@ -8,9 +8,9 @@ import {State} from "../../auxiliary/types/ingridientTypes";
 import {useDrop} from "react-dnd";
 import {BurgerConstructorSub} from "./burgerConstructorSub";
 import {useAppDispatch, useAppSelector} from "../../auxiliary/hooks/redux";
-import {ingridientChoiceSlice} from "../../redux/reducer/ingridientChoiceReducer";
-import {modalSlice} from "../../redux/reducer/modalReducer";
-import {addOrderId} from "../../redux/action/ingridientAction";
+import {ingridientChoiceSlice} from "../../services/reducer/ingridientChoiceReducer";
+import {modalSlice} from "../../services/reducer/modalReducer";
+import {addOrderId} from "../../services/action/ingridientAction";
 
 
 interface Props {
@@ -54,13 +54,33 @@ const BurgerConstructor: React.FC<Props> = () => {
     });
 
     const get: React.ReactEventHandler = () => {
-        getIdOrder()
 
-        const id: Array<string> = ingridientChoice.map(e => { return e._id})
-        // @ts-ignore
-        id.push(bun._id)
-        const ing = {'ingredients': id}
-        dispatch(addOrderId())
+
+        if (!bun) {
+            alert("Добавте булочку!")
+        } else {
+
+            let id: string[] = []
+            // @ts-ignore
+            id.push(bun._id)
+            for (let i = 0;  i < ingridientChoice.length; i++){
+                id.push(ingridientChoice[i]._id)
+            }
+            // @ts-ignore
+            id.push(bun._id)
+            dispatch(addOrderId(id))
+
+
+            getIdOrder()
+
+        }
+
+
+
+
+
+
+
     }
 
 

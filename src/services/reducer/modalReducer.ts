@@ -39,13 +39,12 @@ export const modalSlice = createSlice({
             state.activeModal = true
         },
 
-        offModal(state){ //, action: PayloadAction<string>
+        offModal(state){
             state.activeModal = false
         },
 
         getOrder(state){
             state.activeModalName = 'order'
-            // state.idOrder =  uuid().slice(0,8)
         },
 
         getIng(state){

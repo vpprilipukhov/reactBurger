@@ -3,11 +3,11 @@ import './index.css';
 import App from './components/app/app';
 import {Provider} from 'react-redux'
 import {BrowserRouter} from 'react-router-dom'
-// import {createStore, applyMiddleware} from "redux";
-// import {rootReducer} from "./redux/rootReducer";
-// import thunk from "redux-thunk";
+// import {createStore, applyMiddleware} from "services";
+// import {rootReducer} from "./services/rootReducer";
+// import thunk from "services-thunk";
 import ReactDOM from "react-dom";
-import {setupStore} from "./redux/setupStore";
+import {setupStore} from "./services/setupStore";
 
 const store = setupStore()
 

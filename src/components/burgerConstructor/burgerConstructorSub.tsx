@@ -2,7 +2,7 @@ import React, {useRef} from "react";
 import styles from "./burgerConstructor.module.css";
 import {CurrencyIcon, DeleteIcon, DragIcon, LockIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import {StateChoice} from "../../auxiliary/types/ingridientTypes";
-import {ingridientChoiceSlice} from "../../redux/reducer/ingridientChoiceReducer";
+import {ingridientChoiceSlice} from "../../services/reducer/ingridientChoiceReducer";
 import {useAppDispatch, useAppSelector} from "../../auxiliary/hooks/redux";
 import {useDrag, useDrop} from "react-dnd";
 

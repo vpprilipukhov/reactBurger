@@ -4,7 +4,7 @@ import {
     CloseIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components'
 import {useAppDispatch} from "../../auxiliary/hooks/redux";
-import {modalSlice} from "../../redux/reducer/modalReducer";
+import {modalSlice} from "../../services/reducer/modalReducer";
 
 
 interface Props {

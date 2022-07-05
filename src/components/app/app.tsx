@@ -3,7 +3,7 @@ import AppHeader from "../appHeader/appHeader";
 import BurgerIngredients from "../burgerIngredients/burgerIngredients";
 import BurgerConstructor from "../burgerConstructor/burgerConstructor";
 import ModalApp from "../modal/modalApp";
-import {fetchIngredient} from "../../redux/action/ingridientAction";
+import {fetchIngredient} from "../../services/action/ingridientAction";
 import styles from './app.module.css'
 import {useAppDispatch} from "../../auxiliary/hooks/redux";
 import {DndProvider} from "react-dnd";

@@ -6,8 +6,8 @@ import styles from './burgerIngrSub.module.css'
 import {State} from "../../auxiliary/types/ingridientTypes";
 import {useDrag} from "react-dnd";
 import {useAppDispatch, useAppSelector} from "../../auxiliary/hooks/redux";
-import {modalSlice} from "../../redux/reducer/modalReducer";
-import {ingridientChoiceSlice} from "../../redux/reducer/ingridientChoiceReducer";
+import {modalSlice} from "../../services/reducer/modalReducer";
+import {ingridientChoiceSlice} from "../../services/reducer/ingridientChoiceReducer";
 
 
 interface Props {
