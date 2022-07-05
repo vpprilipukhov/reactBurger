@@ -9,8 +9,6 @@ import {useAppSelector} from "../../auxiliary/hooks/redux";
 
 interface Props {
     props?: React.ReactNode
-
-
 }
 
 const ModalApp: React.FC<Props> = () => {

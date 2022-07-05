@@ -1,11 +1,12 @@
 import React from "react";
 import styles from "./orderDetails.module.css"
-import {useAppSelector} from "../../../../auxiliary/hooks/redux";
+import { useAppSelector} from "../../../../auxiliary/hooks/redux";
 
 
+// @ts-ignore
 const OrderDetails: React.FC = () => {
 
-    const id = useAppSelector(state => state.modalReducer.idOrder)
+    const id = useAppSelector(state => state.modalReducer.order)
 
     return (
 

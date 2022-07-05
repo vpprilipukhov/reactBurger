@@ -1,4 +1,4 @@
-import {activeType, IChangeFilterAction, modalActionsTypes} from "../../redux/types/modalTypes";
+import {activeType, IChangeFilterAction, modalActionsTypes} from "../types/modalTypes";
 
 
 const activeModal: activeType = {

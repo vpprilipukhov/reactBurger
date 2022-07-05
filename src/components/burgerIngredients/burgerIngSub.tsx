@@ -3,7 +3,7 @@ import {
     CurrencyIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './burgerIngrSub.module.css'
-import {State} from "../../redux/types/ingridientTypes";
+import {State} from "../../auxiliary/types/ingridientTypes";
 import {useDrag} from "react-dnd";
 import {useAppDispatch, useAppSelector} from "../../auxiliary/hooks/redux";
 import {modalSlice} from "../../redux/reducer/modalReducer";

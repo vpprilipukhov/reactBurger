@@ -1,6 +1,6 @@
 import {Dispatch} from "redux";
 import axios from "axios";
-import {ingredientAC, ingredientActionTypes} from "../../redux/types/ingridientTypes";
+import {ingredientAC, ingredientActionTypes} from "../types/ingridientTypes";
 
 
 

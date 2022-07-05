@@ -1,4 +1,4 @@
-import {modalAC, modalActionsTypes} from "../../redux/types/modalTypes";
+import {modalAC, modalActionsTypes} from "../types/modalTypes";
 
 export const onModalAC = (): modalAC => {
     return {

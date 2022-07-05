@@ -1,4 +1,4 @@
-import {ingredientAC, ingredientActionTypes, ingredientState} from "../../redux/types/ingridientTypes";
+import {ingredientAC, ingredientActionTypes, ingredientState} from "../types/ingridientTypes";
 
 
 const initialState: ingredientState = {

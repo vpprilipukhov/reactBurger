@@ -1,4 +1,4 @@
-import {State, StateChoice} from "../types/ingridientTypes";
+import {State, StateChoice} from "../../auxiliary/types/ingridientTypes";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {v4 as uuid} from "uuid";
 

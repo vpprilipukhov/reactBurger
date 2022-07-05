@@ -1,20 +1,33 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {State} from "../types/ingridientTypes";
-import {v4 as uuid} from "uuid";
+import {State} from "../../auxiliary/types/ingridientTypes";
 
+
+export interface orderPostType {
+    name: string
+    order: {
+        number: number
+    }
+    success: boolean
+}
 
 export interface modalType {
     activeModal: boolean
     activeModalName: string
     putIngridient: State | undefined
-    idOrder: string
+    order: orderPostType | undefined
+    isLoading : boolean
+    error: string
 }
+
+
 
 const initialState: modalType = {
     activeModal: false,
     activeModalName: '',
     putIngridient: undefined,
-    idOrder: ''
+    order: undefined,
+    isLoading: false,
+    error: ''
 }
 
 
@@ -32,7 +45,7 @@ export const modalSlice = createSlice({
 
         getOrder(state){
             state.activeModalName = 'order'
-            state.idOrder =  uuid().slice(0,8)
+            // state.idOrder =  uuid().slice(0,8)
         },
 
         getIng(state){
@@ -42,6 +55,22 @@ export const modalSlice = createSlice({
         putIngridient(state,  action: PayloadAction<State>){
             state.putIngridient = action.payload
         }
+        ,
+        orderFetching(state) {
+            state.isLoading = true;
+
+        },
+        orderFetchingSuccess(state, action: PayloadAction<orderPostType>) {
+            state.isLoading = false;
+            state.error = ''
+            state.order = action.payload
+
+        },
+        orderFetchingError(state, action: PayloadAction<string>) {
+            state.isLoading = false;
+            state.error = action.payload
+        },
+
     }
 
 })

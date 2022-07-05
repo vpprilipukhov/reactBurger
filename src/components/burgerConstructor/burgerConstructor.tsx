@@ -4,12 +4,13 @@ import {
     CurrencyIcon,
     Button,
 } from '@ya.praktikum/react-developer-burger-ui-components'
-import {State} from "../../redux/types/ingridientTypes";
+import {State} from "../../auxiliary/types/ingridientTypes";
 import {useDrop} from "react-dnd";
 import {BurgerConstructorSub} from "./burgerConstructorSub";
 import {useAppDispatch, useAppSelector} from "../../auxiliary/hooks/redux";
 import {ingridientChoiceSlice} from "../../redux/reducer/ingridientChoiceReducer";
 import {modalSlice} from "../../redux/reducer/modalReducer";
+import {addOrderId} from "../../redux/action/ingridientAction";
 
 
 interface Props {
@@ -28,6 +29,7 @@ const BurgerConstructor: React.FC<Props> = () => {
     const {onModal, getOrder} = modalSlice.actions
     const {appendIng} = ingridientChoiceSlice.actions
     const dispatch = useAppDispatch()
+
 
 
     const handleDrop = (itemId: { id: string }) => {
@@ -53,6 +55,12 @@ const BurgerConstructor: React.FC<Props> = () => {
 
     const get: React.ReactEventHandler = () => {
         getIdOrder()
+
+        const id: Array<string> = ingridientChoice.map(e => { return e._id})
+        // @ts-ignore
+        id.push(bun._id)
+        const ing = {'ingredients': id}
+        dispatch(addOrderId())
     }
 
 

@@ -1,4 +1,4 @@
-import {State} from "../types/ingridientTypes";
+import {State} from "../../auxiliary/types/ingridientTypes";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 // import {fetchIngredient} from "../action/ingridientAction";
 

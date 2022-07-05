@@ -4,10 +4,7 @@ export enum ingredientActionTypes {
     FETCH_INGREDIENT_ERROR = 'FETCH_INGREDIENT_ERROR',
 }
 
-export interface apiIngridient {
-    success: boolean
-    data: State[]
-}
+
 export interface State {
     currentTarget: any
     _id: string
