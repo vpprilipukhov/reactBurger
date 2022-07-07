@@ -8,7 +8,7 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components'
 
 
-function AppHeader() {
+const AppHeader: React.FC = () => {
 
 
     return (

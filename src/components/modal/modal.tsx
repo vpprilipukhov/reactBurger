@@ -3,24 +3,27 @@ import styles from './modal.module.css'
 import {
     CloseIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components'
+import {useAppDispatch} from "../../auxiliary/hooks/redux";
+import {modalSlice} from "../../services/reducer/modalReducer";
 
 
 interface Props {
     children?: React.ReactNode
-    activeFunc: Function
+    title: string
 }
 
 const Modal: React.FC<Props> = ({
-
-                                    activeFunc,
+                                    title,
                                     children
 
                                 }) => {
 
-    const off = () => {
-        activeFunc(false)
-    }
+    const {offModal} = modalSlice.actions
+    const dispatch = useAppDispatch()
 
+    const off = () => {
+        dispatch(offModal())
+    }
 
     return (
 
@@ -31,7 +34,7 @@ const Modal: React.FC<Props> = ({
                 <header className={styles.headerMy}>
                     <div className={styles.headerMyText}>
                         {
-                            'Заголовок'
+                            title
                         }</div>
                     <button className={styles.headerMyCloseIcon}
                             onClick={off}>< CloseIcon type={'primary'}/></button>
@@ -39,7 +42,6 @@ const Modal: React.FC<Props> = ({
 
                 <div>
                     {children}
-
                 </div>
             </div>
 

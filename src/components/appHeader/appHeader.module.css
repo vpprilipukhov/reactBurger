@@ -55,7 +55,7 @@
 
     /* desktop/text */
 
-    font-family: 'JetBrains Mono';
+    font-family: 'Jet Brains Mono';
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -69,26 +69,3 @@
 .child {
 
 }
-
-
-/*.appHeader img {*/
-/*    width:  420px;*/
-/*}*/
-
-/*img.center {*/
-/*    display: block;*/
-/*    margin-left: auto;*/
-/*    margin-right: auto;*/
-/*}*/
-
-/*img {*/
-/*    width: 300%;*/
-/*    height: auto;*/
-/*    background-color: #00cccc;*/
-/*}*/
-
-/*.appHeader_Logo {*/
-/*    text-align: center;*/
-/*    image-orientation: revert;*/
-/*    background-color: #00cccc;*/
-/*}*/

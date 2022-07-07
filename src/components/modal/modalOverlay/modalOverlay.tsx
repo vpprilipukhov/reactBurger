@@ -1,36 +1,25 @@
 import React from "react";
 import styles from './modalOverlay.module.css'
-
-interface State {
-    _id: string
-    name: string
-    type: string
-    proteins: number
-    fat: number
-    carbohydrates: number
-    calories: number
-    price: number
-    image: string
-    image_mobile: string
-    image_large: string
-    __v: number
+import {useAppDispatch} from "../../../auxiliary/hooks/redux";
+import {modalSlice} from "../../../services/reducer/modalReducer";
 
 
-}
+
 
 interface Props {
     props?: React.ReactNode
-    activeFunc: Function
-
 }
 
-const ModalOverlay: React.FC<Props> = ({
-                                           activeFunc,
+const ModalOverlay: React.FC<Props> = () => {
 
-                                       }) => {
+
+    const {offModal} = modalSlice.actions
+    const dispatch = useAppDispatch()
+
 
     const off = () => {
-        activeFunc(false)
+        dispatch(offModal())
+
     }
 
     return (
